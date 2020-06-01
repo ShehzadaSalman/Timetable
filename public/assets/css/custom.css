@@ -1,0 +1,96 @@
+.text-muted {
+    color: #9A9A9A;
+}
+
+.text-primary, .text-primary:hover {
+    color: #1D62F0 !important;
+}
+
+.text-info, .text-info:hover {
+    color: #1DC7EA !important;
+}
+
+.text-success, .text-success:hover {
+    color: #87CB16 !important;
+}
+
+.text-warning, .text-warning:hover {
+    color: #FF9500 !important;
+}
+
+.text-danger, .text-danger:hover {
+    color: #FF4A55 !important;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+.login-logo{
+    margin-bottom: 40px;
+}
+#login-btn{
+margin-top: 30px;
+cursor: pointer;
+background-color: #1D62F0 !important;
+color: #ffffff;
+}
+.login-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #00d2ff;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+.login-div{
+    min-width: 400px;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    min-height: 550px;
+    align-self: center;
+}
+.login-div h2{
+    text-align: justify;
+    margin-bottom: 35px;
+}
+
+.credential-div{
+
+    padding-bottom: 15px;
+}
+ul.nav.nav-mobile-menu{
+    display: none;
+}
+.mb-40{
+    margin-bottom: 40px;
+}
+.pl-20{
+    padding-left: 20px;
+}
+.pl-30{
+    padding-right: 30px;
+}
+.edit-btn{
+   padding-left: 0;
+    border: none;
+    color: #FF9500;
+}
+.delete-btn{
+    padding-left: 0;
+    border: none;
+    color: #FF4A55;
+}
+.pagination>li>a, .pagination>li>span{
+    background-color: transparent;
+    color: #9A9A9A;
+}
+
+.div-box-dashboard{
+display: flex;
+justify-content: center;
+align-items: center;
+}
