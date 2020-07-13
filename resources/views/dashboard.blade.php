@@ -42,66 +42,61 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="/home" class="simple-text">
+                <a href="home" class="simple-text">
                     Automated TimeTable
                 </a>
             </div>
 
             <ul class="nav">
                 <li class="active">
-                    <a href="/home">
+                    <a href="home">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="">
                     <a href="manage">
-                        <i class="pe-7s-users"></i>
+                        <i class="pe-7s-user"></i>
                         <p>Manage admin</p>
                     </a>
                 </li>
                 <li class="">
                     <a href="#">
-                        <i class="pe-7s-file"></i>
+                        <i class="pe-7s-note2"></i>
                         <p>Create a Time Table</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="#">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>University</p>
+                    <a href="instructor">
+                        <i class="pe-7s-users"></i>
+                        <p>Instructor</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="#">
-                        <i class="pe-7s-file"></i>
+                    <a href="department">
+                        <i class="pe-7s-culture"></i>
                         <p>Department</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="#">
-                        <i class="pe-7s-file"></i>
-                        <p>Class</p>
+                    <a href="semester">
+                        <i class="pe-7s-bookmarks"></i>
+                        <p>Semester</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="#">
-                        <i class="pe-7s-file"></i>
+                    <a href="course">
+                        <i class="pe-7s-notebook"></i>
                         <p> Course</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="#">
-                        <i class="pe-7s-file"></i>
+                    <a href="room">
+                        <i class="pe-7s-box2"></i>
                         <p>Room</p>
                     </a>
                 </li>
-                <li class="">
-                    <a href="#">
-                        <i class="pe-7s-file"></i>
-                        <p>Time Slot</p>
-                    </a>
-                </li>
+
                 <li class="">
                     <!-- <a href="/">
 
@@ -144,9 +139,6 @@
 
 
         <div class="content div-box-dashboard">
-
-                
-
 
         </div>
 

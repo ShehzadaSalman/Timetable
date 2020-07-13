@@ -29,7 +29,28 @@
 
 </head>
 <body>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Edit the Department</h4>
+        </div>
+        <div class="modal-body">
+        <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
+					{{ csrf_field() }}
+				<input type="text" name="departmentName" id="editDepartmentName" placeholder="Write Survey Title" class="form-control" required>
+                <input type="number" name="departmentRoom" id="editDepartmentRoom"  class="form-control" required>
 
+			<button type="submit" class="btn btn-default">Update</button>
+				</form>
+
+
+        </div>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><
 <div class="wrapper">
     <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
 
@@ -54,9 +75,9 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="manage">
-                        <i class="pe-7s-users"></i>
+                        <i class="pe-7s-user"></i>
                         <p>Manage admin</p>
                     </a>
                 </li>
@@ -72,7 +93,7 @@
                         <p>Instructor</p>
                     </a>
                 </li>
-                <li class="">
+                <li class="active">
                     <a href="department">
                         <i class="pe-7s-culture"></i>
                         <p>Department</p>
@@ -96,6 +117,7 @@
                         <p>Room</p>
                     </a>
                 </li>
+
                 <li class="">
 									<a class="dropdown-item" href="{{ route('logout') }}"
 										 onclick="event.preventDefault();
@@ -125,7 +147,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Managing the admin</a>
+                    <a class="navbar-brand" href="#">Managing the Departments</a>
                 </div>
 
             </div>
@@ -136,65 +158,69 @@
             <div class="container-fluid">
                 <div class="row">
                    <div class="col-md-8">
-										 @if(session()->has('message'))
-										<div class="alert alert-success">
-												{{ session()->get('message') }}
-										</div>
-										@endif
+                    @if(session()->has('message'))
+                <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                </div>
+                @endif
                     <!-- credentials for the user -->
                     <div class="credential-div">
 
-                        <h4>Update your Credentials</h4>
-												<form method="post" action="/updateuser" enctype="multipart/form-data">
-																{{ csrf_field() }}
-                        <input type="email" name="user"  class="form-control" value="{{ $user[0]->email }}">
-                        <input type="password" name="password" class="form-control" placeholder="Write your New Password" value="">
-								        <div class="text-right">
-													<button type="submit" class="btn btn-primary">
-															Update User
-													</button>
-								        </div>
+                        <h4>Create a new Department</h4>
 
-											</form>
+	     <form method="post" action="/department" enctype="multipart/form-data">
+			{{ csrf_field() }}
+                        <input type="text" name="departmentName"  class="form-control"
+                        placeholder = "create a new Instructor" required>
+                        <input type="number" name="departmentRoom" placeholder = "no. of rooms" class="form-control"
+                         required>
+
+                        <div class="text-right">
+                        <button type="submit" class="btn btn-primary">
+                                Submit
+                        </button>
+                        </div>
+
+                            </form>
                     </div>
                     <hr/>
-										@if(session()->has('messagetwo'))
-									 <div class="alert alert-success">
-											 {{ session()->get('messagetwo') }}
-									 </div>
-									 @endif
-                      <h4> Update logo and heading </h4>
+                    <div class = "instructor-list">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Department Name</th>
+                            <th>No. of Rooms</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($inst as $var)
+                        <tr>
+                            <td class = "department_id"> {{ $var->deptId}}</td>
+                            <td class = "department_name"> {{ $var->deptName }}</td>
+                            <td class = "department_rooms"> {{ $var->no_of_rooms}}</td>
+                            <td>
+                            <a class = "edit-btn">Edit</a> |
+                            <a href="deletedepartment/{{$var->deptId}}">Delete</a>
+                            </td>
+                        </tr>
 
-                    <!-- the logo for login page -->
-										<form method="post" action="/logoupload" enctype="multipart/form-data">
-												{{ csrf_field() }}
-                    <div class="credential-div">
-                       <div class="" style="max-width: 400px;">
-                        <img style="margin-bottom: 10px; height: 200px;"  src="{{ $info[0]->Path }}" alt="loading image" required>
-                        <br>
-                        <br>
-                     </div>
-                       <input type="file" class = "form-control" name ="logo" value="" required  accept="image/*" />
+                    @endforeach
+                        </tbody>
+                    </table>
+
+
                     </div>
 
-                    <!-- the title for the login page -->
-                    <div class="credential-div">
-                        <!-- <h4>Title of the Login Page</h4> -->
-                        <input type="text" class="form-control"  name ="siteheading" value="{{ $info[0]->Heading }}" />
 
-                     </div>
-                     <div class="update-btn text-right">
-                        <button type="submit" class="btn btn-primary">
-                        Update Info
-                        </button>
-                     </div>
 
-									 </form>
 
                     </div>
                 </div>
             </div>
         </div>
+<!-- Modal -->
 
 
         <footer class="footer">
@@ -222,9 +248,31 @@
     <!--   Core JS Files   -->
     <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+  <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+    <script>
+
+     $(document).ready(function () {
+
+$('.edit-btn').click(function () {
+// $("#editSurveyModal").modal()
+var title_name =   $(this).parent().parent().find('.department_name').html();
+var title_rooms = $(this).parent().parent().find('.department_rooms').html();
+var title_id = $(this).parent().parent().find('.department_id').html();
+var Rooms = parseInt(title_rooms);
+
+$('#editDepartmentName').val(title_name);
+$('#editDepartmentRoom').val(Rooms);
+$('#edit-form').attr('action' ,'editdepartment/' +title_id);
+$("#editModal").modal();
+
+
+});
+
+});
+
+
+    </script>
+
 
 </html>

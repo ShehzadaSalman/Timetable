@@ -29,16 +29,36 @@
 
 </head>
 <body>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Edit the Room</h4>
+        </div>
+        <div class="modal-body">
+        <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
+					{{ csrf_field() }}
+                    <select name="departmentName" id="editDepartmentName" class = "form-control">
+                    @foreach($dept as $dep)
+                        <option value="{{$dep->deptId}}">{{ $dep->deptName }}</option>
+                   @endforeach
+                    </select>
+			<br>
+                <input type="text" name="roomName" id="editRoomName"  class="form-control" required>
 
+			<button type="submit" class="btn btn-default">Update</button>
+				</form>
+
+
+        </div>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><
 <div class="wrapper">
     <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
 
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 
     	<div class="sidebar-wrapper">
             <div class="logo">
@@ -54,9 +74,9 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="manage">
-                        <i class="pe-7s-users"></i>
+                        <i class="pe-7s-user"></i>
                         <p>Manage admin</p>
                     </a>
                 </li>
@@ -78,7 +98,7 @@
                         <p>Department</p>
                     </a>
                 </li>
-                <li class="">
+                <li class="active">
                     <a href="semester">
                         <i class="pe-7s-bookmarks"></i>
                         <p>Semester</p>
@@ -87,7 +107,7 @@
                 <li class="">
                     <a href="course">
                         <i class="pe-7s-notebook"></i>
-                        <p> Course</p>
+                        <p>Course</p>
                     </a>
                 </li>
                 <li class="">
@@ -96,6 +116,7 @@
                         <p>Room</p>
                     </a>
                 </li>
+
                 <li class="">
 									<a class="dropdown-item" href="{{ route('logout') }}"
 										 onclick="event.preventDefault();
@@ -125,7 +146,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Managing the admin</a>
+                    <a class="navbar-brand" href="#">Managing the Rooms</a>
                 </div>
 
             </div>
@@ -136,65 +157,72 @@
             <div class="container-fluid">
                 <div class="row">
                    <div class="col-md-8">
-										 @if(session()->has('message'))
-										<div class="alert alert-success">
-												{{ session()->get('message') }}
-										</div>
-										@endif
+                    @if(session()->has('message'))
+                <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                </div>
+                @endif
                     <!-- credentials for the user -->
                     <div class="credential-div">
 
-                        <h4>Update your Credentials</h4>
-												<form method="post" action="/updateuser" enctype="multipart/form-data">
-																{{ csrf_field() }}
-                        <input type="email" name="user"  class="form-control" value="{{ $user[0]->email }}">
-                        <input type="password" name="password" class="form-control" placeholder="Write your New Password" value="">
-								        <div class="text-right">
-													<button type="submit" class="btn btn-primary">
-															Update User
-													</button>
-								        </div>
+                        <h4>Create a new Semester</h4>
+	     <form method="post" action="/semester" enctype="multipart/form-data">
+			{{ csrf_field() }}
+                        <select name="departmentID" id="departmentName" class = "form-control">
+                        @foreach($dept as $dep)
+                        <option value="{{$dep->deptId}}">{{ $dep->deptName }}</option>
+                        @endforeach
+                        </select>
+                        <span style = "color: #8e8e8e; padding-left: 20px;">Select the department for this semester</span>
+                        <input style = " margin-top: 20px;"
+                            type="text" name="roomName"  class="form-control"
+                        placeholder = "title of the Semester" required>
 
-											</form>
+
+                        <div class="text-right">
+                        <button type="submit" class="btn btn-primary">
+                                Submit
+                        </button>
+                        </div>
+
+                            </form>
                     </div>
                     <hr/>
-										@if(session()->has('messagetwo'))
-									 <div class="alert alert-success">
-											 {{ session()->get('messagetwo') }}
-									 </div>
-									 @endif
-                      <h4> Update logo and heading </h4>
+                    <div class = "instructor-list">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Department Name</th>
+                            <th>Title</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($inst as $var)
+                        <tr>
+                            <td class = "room_id"> {{ $var->ID}} </td>
+                            <td class = "department_id" style ="display: none;"> {{ $var->DEPTID }}</td>
+                            <td class = "department_name">{{ $var->DEPARTMENT}}</td>
+                            <td class = "room_name"> {{ $var->NAME}}</td>
+                            <td>
+                            <a class = "edit-btn">Edit</a> |
+                            <a href="deletesemester/{{$var->ID}}">Delete</a>
+                            </td>
+                        </tr>
 
-                    <!-- the logo for login page -->
-										<form method="post" action="/logoupload" enctype="multipart/form-data">
-												{{ csrf_field() }}
-                    <div class="credential-div">
-                       <div class="" style="max-width: 400px;">
-                        <img style="margin-bottom: 10px; height: 200px;"  src="{{ $info[0]->Path }}" alt="loading image" required>
-                        <br>
-                        <br>
-                     </div>
-                       <input type="file" class = "form-control" name ="logo" value="" required  accept="image/*" />
+                    @endforeach
+                        </tbody>
+                    </table>
+
+
                     </div>
-
-                    <!-- the title for the login page -->
-                    <div class="credential-div">
-                        <!-- <h4>Title of the Login Page</h4> -->
-                        <input type="text" class="form-control"  name ="siteheading" value="{{ $info[0]->Heading }}" />
-
-                     </div>
-                     <div class="update-btn text-right">
-                        <button type="submit" class="btn btn-primary">
-                        Update Info
-                        </button>
-                     </div>
-
-									 </form>
 
                     </div>
                 </div>
             </div>
         </div>
+<!-- Modal -->
 
 
         <footer class="footer">
@@ -208,7 +236,7 @@
                     </ul>
                 </nav>
                 <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="/">Automated TimeTable</a>, made with love for a better world
+                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="/">Know Corona</a>, made with love for a better world
                 </p>
             </div>
         </footer>
@@ -222,9 +250,33 @@
     <!--   Core JS Files   -->
     <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+  <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+    <script>
+
+     $(document).ready(function () {
+
+$('.edit-btn').click(function () {
+
+var dept_id =   $(this).parent().parent().find('.department_id').html();
+var dept_name = $(this).parent().parent().find('.department_name').html();
+var room_id = $(this).parent().parent().find('.room_id').html();
+var room_name = $(this).parent().parent().find('.room_name').html();
+
+var department_id = parseInt(dept_id);
+
+$('#editRoomName').val(room_name);
+$('#editDepartmentName').val(department_id);
+$('#edit-form').attr('action' ,'editsemester/' +room_id);
+$("#editModal").modal();
+
+
+});
+
+});
+
+
+    </script>
+
 
 </html>
