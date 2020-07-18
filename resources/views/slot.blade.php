@@ -34,7 +34,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Edit the Instructor</h4>
+          <h4 class="modal-title">Edit the TimeTable Slot</h4>
         </div>
         <div class="modal-body">
         <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
@@ -80,13 +80,13 @@
                         <p>Manage admin</p>
                     </a>
                 </li>
-                <li class="">
-                    <a href="#">
+                <li class="active">
+                    <a href="slot">
                         <i class="pe-7s-note2"></i>
-                        <p>Create a Time Table</p>
+                        <p>Create a TimeTable Slot</p>
                     </a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="instructor">
                         <i class="pe-7s-users"></i>
                         <p>Instructor</p>
@@ -146,9 +146,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Managing the Instructor</a>
+                    <a class="navbar-brand" href="#">Managing the TimeTable Slot</a>
                 </div>
-
             </div>
         </nav>
 
@@ -156,7 +155,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                   <div class="col-md-8">
+                   <div class="col-md-10">
                     @if(session()->has('message'))
                 <div class="alert alert-success">
                         {{ session()->get('message') }}
@@ -165,15 +164,79 @@
                     <!-- credentials for the user -->
                     <div class="credential-div">
 
-                        <h4>Create a new Instructor</h4>
+                        <h4>Create a new TimeTable Slot</h4>
 
-	     <form method="post" action="/instructor" enctype="multipart/form-data">
-			{{ csrf_field() }}
-                        <input type="text" name="instructorName"  class="form-control"
-                        placeholder = "create a new Instructor" required>
+									     <form method="post" action="/slot" enctype="multipart/form-data">
+											{{ csrf_field() }}
+											<span syle = "">Select a Department</span>
+											<select class="form-control" id = "departmentName" name="departmentName" required>
+												<option value="">Choose a department</option>
+												@foreach($dept as $dep)
+												<option value="{{ $dep->deptId }}">{{$dep->deptName}}</option>
+                        @endforeach
+											</select>
+											<br>
+											<span>Select the Room</span>
+											<select class="form-control" id = "roomName" name="roomName" required>
+
+											</select>
+                    	<br>
+											<span>Select the Instructor</span>
+											<select class="form-control" name="instructorName" id = "InstructorName" required>
+												@foreach($teacher as $teach)
+												<option value="{{ $teach->instrutorId}}">{{$teach->instructorname }}</option>
+                        @endforeach
+											</select>
+											<br>
+											<span>Select the Course</span>
+											<select class="form-control" name="courseName" id = "courseName" required>
+												@foreach($course as $cou)
+												<option value="{{ $cou->courseId}}">{{$cou->courseName }}</option>
+												@endforeach
+											</select>
+											<br>
+											<span>Select the Semester</span>
+											<select class="form-control" id = "semesterName" name="semesterName" required>
+												<option value=""></option>
+											</select>
+											<br>
+											<span>Select the Day of the week</span>
+											<select class="form-control" name="day" required>
+												<option value="Monday">Monday</option>
+												<option value="Tuesday">Tuesday</option>
+												<option value="Wednesday">Wednesday</option>
+												<option value="Thursday">Thursday</option>
+												<option value="Friday">Friday</option>
+												<option value="Saturday">Saturday</option>
+												<option value="Sunday">Sunday</option>
+											</select>
+												<br>
+											<span>Select the TimeSlot</span>
+										<select class="form-control" name="timeSlot" required>
+										<option value="08:00AM">08:00AM</option>
+										<option value="08:40AM">08:40AM</option>
+										<option value="09:20AM">09:20AM</option>
+										<option value="10:00AM">10:00AM</option>
+										<option value="10:40AM">10:40AM</option>
+										<option value="11:20AM">11:20AM</option>
+										<option value="12:00PM">12:00PM</option>
+										<option value="12:40PM">12:40PM</option>
+										<option value="01:20PM">01:20PM</option>
+										<option value="02:00PM">02:00PM</option>
+										<option value="02:40PM">02:40PM</option>
+										<option value="03:00PM">03:00PM</option>
+										<option value="03:40PM">03:40PM</option>
+										<option value="04:20PM">04:20PM</option>
+										<option value="05:00PM">05:00PM</option>
+										<option value="05:40PM">05:40PM</option>
+										<option value="06:20PM">06:20PM</option>
+										<option value="07:00PM">07:00PM</option>
+										<option value="07:40PM">07:40PM</option>
+
+											</select>
 
                         <div class="text-right">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" style = "margin-top: 30px;">
                                 Submit
                         </button>
                         </div>
@@ -186,18 +249,31 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Full Name</th>
+                            <th>Department</th>
+														<th>Semester</th>
+														<th>Instructor</th>
+														<th>Room</th>
+														<th>Course</th>
+														<th>TimeSlot</th>
+														<th>Day</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($inst as $var)
                         <tr>
-                            <td class = "instructor_id"> {{ $var->instrutorId}}</td>
-                            <td class = "instructor_name"> {{ $var->instructorname }}</td>
+                            <td class = "slot_id"> {{ $var->slotId}}</td>
+                            <td class = "department_name"> {{ $var->deptName }}</td>
+														<td class = "slot_id"> {{ $var->semesterName}}</td>
+														<td class = "department_name"> {{ $var->instructorname }}</td>
+														<td class = "slot_id"> {{ $var->roomname}}</td>
+														<td class = "slot_id"> {{ $var->courseName}}</td>
+														<td class = "department_name"> {{ $var->timeSlot }}</td>
+														<td class = "department_name"> {{ $var->Day }}</td>
+
                             <td>
-                            <a class = "edit-btn">Edit</a> |
-                            <a href="deleteinstructor/{{$var->instrutorId}}">Delete</a>
+                            <a href = "editslot/{{$var->slotId}}">Edit</a> |
+                            <a href="deleteslot/{{$var->slotId}}">Delete</a>
                             </td>
                         </tr>
 
@@ -216,7 +292,6 @@
             </div>
         </div>
 <!-- Modal -->
-
 
         <footer class="footer">
             <div class="container-fluid">
@@ -246,24 +321,29 @@
   <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
     <script>
-
      $(document).ready(function () {
 
-$('.edit-btn').click(function () {
-// $("#editSurveyModal").modal()
-var title_name =   $(this).parent().parent().find('.instructor_name').html();
-var title_id = $(this).parent().parent().find('.instructor_id').html();
+			 $("#departmentName").change(function(){
+				 var id = $(this).children("option:selected"). val(); // get value of the selected option
+           // for the rooms options
+				 $.ajax({url: "ajaxrequestroom/" +id , success: function(result){
+					 $("#roomName").empty(); // empty the list
+          for(let i =0; i< result.length; i++){ // append new options to the select element
+            $("#roomName").append("<option value = "+result[i].roomid+">"+result[i].roomname+"</option>");
+					}
+			   }});
+          // for the semesters of the department
+					$.ajax({url: "ajaxrequestsemester/" +id , success: function(result){
+					$("#semesterName").empty(); // empty the list
+	 				for(let i =0; i< result.length; i++){ // append new options to the select element
+	 					$("#semesterName").append("<option value = "+result[i].semesterId+">"+result[i].semesterName+"</option>");
+	 				}
+	 			 }});
 
-$('#editInstructorName').val(title_name);
-$('#edit-form').attr('action' ,'editinstructor/' +title_id);
-$("#editModal").modal();
 
+			 });
 
-});
-
-});
-
-
+     });
     </script>
 
 

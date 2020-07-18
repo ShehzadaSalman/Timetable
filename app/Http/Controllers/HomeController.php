@@ -42,7 +42,7 @@ class HomeController extends Controller
    }
 
    // managing the instructor
-
+// ===========================================================================================
 
   public function getInstructor(){
     $inst = DB::table('instructor')->get();
@@ -78,7 +78,7 @@ class HomeController extends Controller
 
 
    // managing the department
-
+// =============================================================================================
    public function getDepartment(){
     $inst = DB::table('department')->get();
     return view('department', [ 'inst' => $inst]);
@@ -179,7 +179,7 @@ class HomeController extends Controller
 
 
    // Managing the semester
-
+// =============================================================================
    public function getSemester(){
 
     $inst = DB::table('semester')
@@ -227,8 +227,161 @@ class HomeController extends Controller
   }
 
 
+// Managing the course
+// =============================================================================
 
 
+  public function getCourse(){
+    $inst = DB::table('course')->get();
+    return view('course', [ 'inst' => $inst]);
+  }
+
+  public function saveCourse(Request $request){
+    DB::table('course')->insert(
+      [
+        'courseName' => $request->courseName,
+        'courseDescription' => $request->courseDescription
+    ]
+  );
+
+  return redirect('course')->with('message','A Course has been added to the TimeTable');
+
+  }
+
+  public function deleteCourse($id){
+    DB::table('course')->where('courseId', $id)->delete();
+
+    return redirect('course')->with('message','A Course has been removed from the TimeTable');
+  }
+
+  public function editCourse(Request $request, $id){
+
+    DB::table('course')->where('courseId', $id)->update(
+      [
+        'courseName' => $request->courseName,
+        'courseDescription' => $request->courseDescription
+      ]
+    );
+    return redirect('course')->with('message','A Course has been updated');
+  }
+
+// Manging the slots
+// ======================================================================================
+
+  public function getSlot(){
+    $inst = DB::table('slot')
+              ->join('department', 'slot.deptId', '=', 'department.deptId')
+              ->join('semester', 'slot.semesterId', '=', 'semester.semesterId')
+              ->join('instructor', 'slot.instructorId', '=', 'instructor.instrutorId')
+              ->join('rooms', 'slot.roomId', '=', 'rooms.roomid')
+              ->join('course', 'slot.courseId', '=', 'course.courseId')
+              ->select('*')
+              ->get();
+
+  $dept = DB::table('department')->get();
+  $teacher = DB::table('instructor')->get();
+  $course = DB::table('course')->get();
+    return view('slot', [ 'inst' => $inst, 'dept' => $dept, 'teacher' => $teacher, 'course' => $course]);
+
+  }
+
+
+
+
+
+
+
+
+  public function saveSlot(Request $request){
+
+    DB::table('slot')->insert(
+      [
+        'deptId' => $request->departmentName,
+        'semesterId' => $request->semesterName,
+        'instructorId' => $request->instructorName,
+        'roomId' => $request->roomName,
+        'timeSlot' => $request->timeSlot,
+        'courseId' => $request->courseName,
+        'Day' => $request->day
+    ]
+  );
+  return redirect('slot')->with('message','A New Slot has been created');
+
+  }
+
+  public function deleteSlot($id){
+    DB::table('slot')->where('slotId', $id)->delete();
+    return redirect('slot')->with('message','A Slot has been removed from the TimeTable');
+  }
+
+  public function editSlot($id){
+
+    $inst = DB::table('slot')
+              ->join('department', 'slot.deptId', '=', 'department.deptId')
+              ->join('semester', 'slot.semesterId', '=', 'semester.semesterId')
+              ->join('instructor', 'slot.instructorId', '=', 'instructor.instrutorId')
+              ->join('rooms', 'slot.roomId', '=', 'rooms.roomid')
+              ->join('course', 'slot.courseId', '=', 'course.courseId')
+              ->select('*')->where('slotId', $id)
+              ->get();
+
+  $dept = DB::table('rooms')->get();
+  $teacher = DB::table('instructor')->get();
+  $course = DB::table('course')->get();
+
+
+    return view('editslot', [ 'inst' => $inst, 'dept' => $dept, 'teacher' => $teacher, 'course' => $course]);
+
+
+  }
+
+
+  public function roomDepartmentAjax($id){
+  $rooms = DB::table('rooms')->where('deptid',$id)->get();
+    return $rooms;
+  }
+
+  public function semesterDepartmentAjax($id){
+  $sem = DB::table('semester')->where('deptId',$id)->get();
+  return $sem;
+  }
+
+
+public function editSlotPost(Request $request){
+  DB::table('slot')->where('slotId', $request->SLOTID)->update(
+    [
+      'semesterId' => $request->semesterName,
+      'instructorId' => $request->instructorName,
+      'roomId' => $request->roomName,
+      'timeSlot' => $request->timeSlot,
+      'courseId' => $request->courseName,
+      'Day' => $request->day
+    ]
+  );
+
+  return redirect('slot')->with('message','A Slot has been removed from the TimeTable');
+}
+
+
+
+// managing the time table
+
+public function getTimeTable(){
+  $id = 3;
+
+  $result = DB::table('slot')
+            ->join('department', 'slot.deptId', '=', 'department.deptId')
+            ->join('semester', 'slot.semesterId', '=', 'semester.semesterId')
+            ->join('instructor', 'slot.instructorId', '=', 'instructor.instrutorId')
+            ->join('rooms', 'slot.roomId', '=', 'rooms.roomid')
+            ->join('course', 'slot.courseId', '=', 'course.courseId')
+            ->select('*')->where('slot.semesterId', $id)
+            ->get();
+
+
+  return view('timetable', ['result' => $result]);
+  // return $result;
+}
 
 
 }

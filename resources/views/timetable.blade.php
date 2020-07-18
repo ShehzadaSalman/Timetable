@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="slot">
+                    <a href="/slot">
                         <i class="pe-7s-note2"></i>
                         <p>Create a Time Table</p>
                     </a>
@@ -138,7 +138,265 @@
         </nav>
 
 
+<div class="testing-data">
+	<!-- @foreach($result as $res)
+	<h5>{{ $res->Day}}</h5>
+	@endforeach
+ -->
+
+	<table width = "500px;"  cellspacing = "0px;">
+		<thead>
+		<tr>
+			<th></th>
+				<th>Monday</th>
+				<th>Tuesday</th>
+				<th>Wednesday</th>
+				<th>Thursday</th>
+				<th>Friday</th>
+				<th>Saturday</th>
+				<th>Sunday</th>
+
+		</tr>
+		</thead>
+			<?php
+
+			for ($x=0; $x < 8; $x++) {
+					echo "<tr>";
+					for ($y=0; $y < 8; $y++) {
+					 $total = $x + $y;
+
+					 if($total%2 == 0){
+					 echo "<td height=50px width=50px bgcolor=#ffffff ></td>";
+					 }else{
+						echo "<td height=50px width=50px bgcolor=#000000 ></td>";
+					 }
+
+
+					}
+					echo "</tr>";
+			}
+
+
+?>
+	</table>
+</div>
+
+
+
+<div class="second-table">
+	<table class = "table">
+		<thead>
+		<tr>
+			<th></th>
+				<th>Monday</th>
+				<th>Tuesday</th>
+				<th>Wednesday</th>
+				<th>Thursday</th>
+				<th>Friday</th>
+				<th>Saturday</th>
+				<th>Sunday</th>
+		</tr>
+		</thead>
+		<tbody>
+			@for($i = 0; $i < 8; $i++)
+        <tr>
+			@for($a = 0; $a < 8; $a++)
+          <td>
+
+@foreach($result as $res)
+{{ $res->deptName  }}
+@endforeach
+					</td>
+				@endfor
+       </tr>
+			@endfor
+
+		</tbody>
+
+	</table>
+
+</div>
         <div class="content div-box-dashboard">
+<!-- displaying the  time table here -->
+<table class="table">
+	<thead>
+	<tr>
+		<th></th>
+			<th>Monday</th>
+			<th>Tuesday</th>
+			<th>Wednesday</th>
+			<th>Thursday</th>
+			<th>Friday</th>
+			<th>Saturday</th>
+			<th>Sunday</th>
+
+	</tr>
+	</thead>
+    <tbody>
+        <tr>
+          <th>08:00AM</th>
+          <td>
+						@if($result[0]->Day == 'Wednesday' && $result[0]->timeSlot == '11:20AM')
+											<h4>This is wednesday</h4>
+						@endif
+					</td>
+        	<td>2</td>
+        	<td>3</td>
+					<td>4</td>
+					<td>5</td>
+					<td></td>
+					<td></td>
+        </tr>
+<tr>
+			<th>08:40AM</th>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+			<td>5</td>
+			<td></td>
+			<td></td>
+		</tr>
+<tr>
+		<th>09:20AM</th>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+	<th>10:00AM</th>
+	<td>1</td>
+	<td>2</td>
+	<td>3</td>
+	<td>4</td>
+	<td>5</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+<th>10:40AM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th>11:20AM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th>12:00PM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>12:40PM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>01:20PM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>02:00PM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>02:40PM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>03:00PM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>03:40PM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>04:20PM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th>05:00PM</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+
+    </tbody>
+</table>
 
         </div>
 

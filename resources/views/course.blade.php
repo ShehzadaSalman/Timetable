@@ -5,7 +5,7 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Automated TimeTable</title>
+	<title>Automated TimeTale</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -34,14 +34,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Edit the Instructor</h4>
+          <h4 class="modal-title">Edit the Course</h4>
         </div>
         <div class="modal-body">
         <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
 					{{ csrf_field() }}
-				<input type="text" name="instructorName" id="editInstructorName" placeholder="Write Survey Title" class="form-control" required>
-
-			<button type="submit" class="btn btn-default">Update</button>
+				<input type="text" name="courseName" id="editCourseName" placeholder="Write Course Title" class="form-control" required>
+<textarea name="courseDescription" cols="80" class="form-control" id = "editCourseDescription" required></textarea>
+			<button type="submit" class="btn btn-default"  style = "margin-top: 20px;" >Update</button>
 				</form>
 
 
@@ -86,7 +86,7 @@
                         <p>Create a Time Table</p>
                     </a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="instructor">
                         <i class="pe-7s-users"></i>
                         <p>Instructor</p>
@@ -104,7 +104,7 @@
                         <p>Semester</p>
                     </a>
                 </li>
-                <li class="">
+                <li class="active">
                     <a href="course">
                         <i class="pe-7s-notebook"></i>
                         <p> Course</p>
@@ -146,7 +146,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Managing the Instructor</a>
+                    <a class="navbar-brand" href="#">Managing the Course</a>
                 </div>
 
             </div>
@@ -165,20 +165,20 @@
                     <!-- credentials for the user -->
                     <div class="credential-div">
 
-                        <h4>Create a new Instructor</h4>
+                        <h4>Create a new Course</h4>
 
-	     <form method="post" action="/instructor" enctype="multipart/form-data">
-			{{ csrf_field() }}
-                        <input type="text" name="instructorName"  class="form-control"
-                        placeholder = "create a new Instructor" required>
-
+			     <form method="post" action="/course" enctype="multipart/form-data">
+					{{ csrf_field() }}
+		                    <input type="text" name="courseName"  class="form-control"
+		                     placeholder = "create a new Course" required>
+                        <textarea name="courseDescription" cols="80" class="form-control" required> A little description about the course</textarea>
                         <div class="text-right">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" style="margin-top: 20px;">
                                 Submit
                         </button>
                         </div>
 
-                            </form>
+          </form>
                     </div>
                     <hr/>
                     <div class = "instructor-list">
@@ -186,18 +186,20 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Full Name</th>
+                            <th>title</th>
+														<th>description</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($inst as $var)
                         <tr>
-                            <td class = "instructor_id"> {{ $var->instrutorId}}</td>
-                            <td class = "instructor_name"> {{ $var->instructorname }}</td>
+                            <td class = "course_id"> {{ $var->courseId}}</td>
+                            <td class = "course_title"> {{ $var->courseName }}</td>
+														<td class = "course_description"> {{ $var->courseDescription }}</td>
                             <td>
                             <a class = "edit-btn">Edit</a> |
-                            <a href="deleteinstructor/{{$var->instrutorId}}">Delete</a>
+                            <a href="deletecourse/{{$var->courseId}}">Delete</a>
                             </td>
                         </tr>
 
@@ -229,7 +231,7 @@
                     </ul>
                 </nav>
                 <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="/">Know Corona</a>, made with love for a better world
+                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="/">Automated TimeTable</a>, made with love for a better world
                 </p>
             </div>
         </footer>
@@ -251,11 +253,14 @@
 
 $('.edit-btn').click(function () {
 // $("#editSurveyModal").modal()
-var title_name =   $(this).parent().parent().find('.instructor_name').html();
-var title_id = $(this).parent().parent().find('.instructor_id').html();
+var title_name =   $(this).parent().parent().find('.course_title').html();
+var title_description =   $(this).parent().parent().find('.course_description').html();
+var title_id = $(this).parent().parent().find('.course_id').html();
 
-$('#editInstructorName').val(title_name);
-$('#edit-form').attr('action' ,'editinstructor/' +title_id);
+
+$('#editCourseName').val(title_name);
+$('#editCourseDescription').val(title_description);
+$('#edit-form').attr('action' ,'editcourse/' +title_id);
 $("#editModal").modal();
 
 
