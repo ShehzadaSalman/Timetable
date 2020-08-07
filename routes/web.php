@@ -80,6 +80,6 @@ Route::get('/ajaxrequestroom/{id}','HomeController@roomDepartmentAjax');
 Route::get('/ajaxrequestsemester/{id}','HomeController@semesterDepartmentAjax');
 
 // displaying the time table of a semesters
-Route::get('/timetable', 'HomeController@getTimeTable');
-
+Route::get('/timetable/{id}', 'HomeController@getTimeTable');
+Route::get('/timetableremove/{id}', 'HomeController@removeTimeTable');
 Auth::routes();

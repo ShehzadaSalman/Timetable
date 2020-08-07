@@ -138,9 +138,45 @@
         </nav>
 
 
-        <div class="content div-box-dashboard">
 
-        </div>
+
+<div class="content container-fluid">
+<h3>TimeTables for semesters are listed below</h3>
+<hr>
+@if(session()->has('message'))
+<div class="alert alert-success">
+		{{ session()->get('message') }}
+</div>
+@endif
+<div class="row">
+
+
+@if($timetable->isEmpty())
+<div class="Text-center" style = "padding-top: 30px; padding-bottom: 30px;">
+    <p class  ="text-center">There are no Timetables created yet <br>
+		<a href ="/slot">Click here</a> to create a timeslot for your Time Table </p>
+</div>
+@endif
+
+	@foreach($timetable as $time)
+<div class="col-md-3">
+	<div class="timetable well" style = "padding: 20px;">
+		<a href="/timetable/{{$time->semesterId}}"> <p style = "color: #000;">
+			Time table for the semester: <b> {{$time->semesterName}}</b></p></a>
+			<a href="/timetable/{{$time->semesterId}}">
+	       <button type = "button" class = "btn btn-primary">View</button>
+			</a>
+			<a href="/timetableremove/{{$time->semesterId}}">
+				<button type = "button" class = "btn btn-secondary">Remove</button>
+			</a>
+
+	</div>
+</div>
+@endforeach
+
+</div>
+
+
 
 
         <footer class="footer">

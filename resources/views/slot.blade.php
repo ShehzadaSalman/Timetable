@@ -202,37 +202,17 @@
 											<br>
 											<span>Select the Day of the week</span>
 											<select class="form-control" name="day" required>
-												<option value="Monday">Monday</option>
-												<option value="Tuesday">Tuesday</option>
-												<option value="Wednesday">Wednesday</option>
-												<option value="Thursday">Thursday</option>
-												<option value="Friday">Friday</option>
-												<option value="Saturday">Saturday</option>
-												<option value="Sunday">Sunday</option>
+												@foreach($day as $da)
+												<option value="{{$da->dayId}}">{{ $da->dayName }}</option>
+												@endforeach
 											</select>
 												<br>
+
 											<span>Select the TimeSlot</span>
 										<select class="form-control" name="timeSlot" required>
-										<option value="08:00AM">08:00AM</option>
-										<option value="08:40AM">08:40AM</option>
-										<option value="09:20AM">09:20AM</option>
-										<option value="10:00AM">10:00AM</option>
-										<option value="10:40AM">10:40AM</option>
-										<option value="11:20AM">11:20AM</option>
-										<option value="12:00PM">12:00PM</option>
-										<option value="12:40PM">12:40PM</option>
-										<option value="01:20PM">01:20PM</option>
-										<option value="02:00PM">02:00PM</option>
-										<option value="02:40PM">02:40PM</option>
-										<option value="03:00PM">03:00PM</option>
-										<option value="03:40PM">03:40PM</option>
-										<option value="04:20PM">04:20PM</option>
-										<option value="05:00PM">05:00PM</option>
-										<option value="05:40PM">05:40PM</option>
-										<option value="06:20PM">06:20PM</option>
-										<option value="07:00PM">07:00PM</option>
-										<option value="07:40PM">07:40PM</option>
-
+											@foreach($time as $ti)
+									   	<option value="{{$ti->timeId}}">{{ $ti->timeName}}</option>
+							        @endforeach
 											</select>
 
                         <div class="text-right">
@@ -268,8 +248,8 @@
 														<td class = "department_name"> {{ $var->instructorname }}</td>
 														<td class = "slot_id"> {{ $var->roomname}}</td>
 														<td class = "slot_id"> {{ $var->courseName}}</td>
-														<td class = "department_name"> {{ $var->timeSlot }}</td>
-														<td class = "department_name"> {{ $var->Day }}</td>
+														<td class = "department_name"> {{ $var->timeName }}</td>
+														<td class = "department_name"> {{ $var->dayName }}</td>
 
                             <td>
                             <a href = "editslot/{{$var->slotId}}">Edit</a> |

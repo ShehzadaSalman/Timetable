@@ -12,26 +12,26 @@
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="/assets/css/animate.min.css" rel="stylesheet"/>
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
+    <link href="/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-   <link rel="stylesheet" href="assets/css/custom.css">
+    <link href="/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+   <link rel="stylesheet" href="/assets/css/custom.css">
 
 
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="blue" data-image="/assets/img/sidebar-5.jpg">
 
     <!--
 
@@ -49,13 +49,13 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="home">
+                    <a href="/home">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="manage">
+                    <a href="/manage">
                         <i class="pe-7s-user"></i>
                         <p>Manage admin</p>
                     </a>
@@ -67,31 +67,31 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="instructor">
+                    <a href="/instructor">
                         <i class="pe-7s-users"></i>
                         <p>Instructor</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="department">
+                    <a href="/department">
                         <i class="pe-7s-culture"></i>
                         <p>Department</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="semester">
+                    <a href="/semester">
                         <i class="pe-7s-bookmarks"></i>
                         <p>Semester</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="course">
+                    <a href="/course">
                         <i class="pe-7s-notebook"></i>
                         <p> Course</p>
                     </a>
                 </li>
                 <li class="">
-                    <a href="room">
+                    <a href="/room">
                         <i class="pe-7s-box2"></i>
                         <p>Room</p>
                     </a>
@@ -138,56 +138,110 @@
         </nav>
 
 
-<div class="testing-data">
-	<!-- @foreach($result as $res)
-	<h5>{{ $res->Day}}</h5>
-	@endforeach
- -->
 
-	<table width = "500px;"  cellspacing = "0px;">
-		<thead>
+
+
+        <div class="content div-box-dashboard">
+<!-- displaying the  time table here -->
+<div style = "width: 70px;">
+<table class = "table table-bordered table-responsive">
+	<thead>
 		<tr>
-			<th></th>
-				<th>Monday</th>
-				<th>Tuesday</th>
-				<th>Wednesday</th>
-				<th>Thursday</th>
-				<th>Friday</th>
-				<th>Saturday</th>
-				<th>Sunday</th>
-
+			<th>Time</th>
 		</tr>
-		</thead>
-			<?php
+	</thead>
+	<tbody>
 
-			for ($x=0; $x < 8; $x++) {
-					echo "<tr>";
-					for ($y=0; $y < 8; $y++) {
-					 $total = $x + $y;
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					08:00AM
+				</div>
 
-					 if($total%2 == 0){
-					 echo "<td height=50px width=50px bgcolor=#ffffff ></td>";
-					 }else{
-						echo "<td height=50px width=50px bgcolor=#000000 ></td>";
-					 }
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					09:00AM
+				</div>
 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					10:00AM
+				</div>
 
-					}
-					echo "</tr>";
-			}
+			</td>
+		</tr>
+		<tr>
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					11:00AM
+				</div>
 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					12:00PM
+				</div>
 
-?>
-	</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					01:00PM
+				</div>
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					02:00PM
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					03:00PM
+				</div>
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					04:00PM
+				</div>
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style = "height: 130px;">
+					05:00PM
+				</div>
+
+			</td>
+		</tr>
+
+	</tbody>
+
+</table>
 </div>
-
-
-
 <div class="second-table">
-	<table class = "table">
+	<table class = "table table-responsive table-bordered">
 		<thead>
 		<tr>
-			<th></th>
+
 				<th>Monday</th>
 				<th>Tuesday</th>
 				<th>Wednesday</th>
@@ -198,14 +252,25 @@
 		</tr>
 		</thead>
 		<tbody>
-			@for($i = 0; $i < 8; $i++)
+			@for($i = 1; $i < 11; $i++) <!-- checking timeslot -->
         <tr>
-			@for($a = 0; $a < 8; $a++)
-          <td>
+			@for($a = 1; $a < 8; $a++)  <!-- checking day or whatever -->
+          <td class = "">
+						<div style="height: 130px; width: 100%;" class="text-center">
+							@foreach($result as $res)
+							@if($res->timeSlot == $i && $res->Day == $a)
+						      Department:	{{ $res->deptName  }}
+							<ul style="margin:0; padding:0; list-style: none;" >
+								<li>Instructor: {{ $res->instructorname}} </li>
+								<li>Room: {{$res->roomname}}</li>
+								<li>Course: {{$res->courseName}}</li>
 
-@foreach($result as $res)
-{{ $res->deptName  }}
-@endforeach
+							</ul>
+							@else
+
+							@endif
+							@endforeach
+						</div>
 					</td>
 				@endfor
        </tr>
@@ -216,188 +281,6 @@
 	</table>
 
 </div>
-        <div class="content div-box-dashboard">
-<!-- displaying the  time table here -->
-<table class="table">
-	<thead>
-	<tr>
-		<th></th>
-			<th>Monday</th>
-			<th>Tuesday</th>
-			<th>Wednesday</th>
-			<th>Thursday</th>
-			<th>Friday</th>
-			<th>Saturday</th>
-			<th>Sunday</th>
-
-	</tr>
-	</thead>
-    <tbody>
-        <tr>
-          <th>08:00AM</th>
-          <td>
-						@if($result[0]->Day == 'Wednesday' && $result[0]->timeSlot == '11:20AM')
-											<h4>This is wednesday</h4>
-						@endif
-					</td>
-        	<td>2</td>
-        	<td>3</td>
-					<td>4</td>
-					<td>5</td>
-					<td></td>
-					<td></td>
-        </tr>
-<tr>
-			<th>08:40AM</th>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
-			<td>4</td>
-			<td>5</td>
-			<td></td>
-			<td></td>
-		</tr>
-<tr>
-		<th>09:20AM</th>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
-		<td>5</td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-	<th>10:00AM</th>
-	<td>1</td>
-	<td>2</td>
-	<td>3</td>
-	<td>4</td>
-	<td>5</td>
-	<td></td>
-	<td></td>
-</tr>
-<tr>
-<th>10:40AM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<th>11:20AM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<th>12:00PM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<th>12:40PM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<th>01:20PM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<th>02:00PM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<th>02:40PM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<th>03:00PM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<th>03:40PM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<th>04:20PM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<th>05:00PM</th>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td></td>
-</tr>
-
-    </tbody>
-</table>
-
         </div>
 
 

@@ -207,36 +207,16 @@
 											<br>
 											<span>Select the Day of the week</span>
 											<select class="form-control" name="day" id = "day_select" required>
-												<option value="Monday">Monday</option>
-												<option value="Tuesday">Tuesday</option>
-												<option value="Wednesday">Wednesday</option>
-												<option value="Thursday">Thursday</option>
-												<option value="Friday">Friday</option>
-												<option value="Saturday">Saturday</option>
-												<option value="Sunday">Sunday</option>
+										    @foreach($day as $da)
+												<option value="{{ $da->dayId  }}">{{ $da->dayName  }}</option>
+												@endforeach
 											</select>
 												<br>
 											<span>Select the TimeSlot</span>
 										<select class="form-control" name="timeSlot" id = "timeslot_select" required>
-										<option value="08:00AM">08:00AM</option>
-										<option value="08:40AM">08:40AM</option>
-										<option value="09:20AM">09:20AM</option>
-										<option value="10:00AM">10:00AM</option>
-										<option value="10:40AM">10:40AM</option>
-										<option value="11:20AM">11:20AM</option>
-										<option value="12:00PM">12:00PM</option>
-										<option value="12:40PM">12:40PM</option>
-										<option value="01:20PM">01:20PM</option>
-										<option value="02:00PM">02:00PM</option>
-										<option value="02:40PM">02:40PM</option>
-										<option value="03:00PM">03:00PM</option>
-										<option value="03:40PM">03:40PM</option>
-										<option value="04:20PM">04:20PM</option>
-										<option value="05:00PM">05:00PM</option>
-										<option value="05:40PM">05:40PM</option>
-										<option value="06:20PM">06:20PM</option>
-										<option value="07:00PM">07:00PM</option>
-										<option value="07:40PM">07:40PM</option>
+											@foreach($time as $tim)
+										<option value="{{ $tim->timeId}}">{{$tim->timeName}}</option>
+										@endforeach
 
 											</select>
 
@@ -282,7 +262,7 @@
 														<td id = "course_id">{{ $var->courseId}}</td>
 														<td id = "course_name"> {{ $var->courseName}}</td>
 														<td id = "timeslot"> {{ $var->timeSlot }}</td>
-														<td id = "day"> {{ $var->Day }}</td>
+														<td id = "day"> {{ $var->dayId }}</td>
 
                             <td>
                             <a class = "edit-btn">Edit</a> |
@@ -342,7 +322,7 @@
 
 // select for the day of the week
 let dayName = document.getElementById('day').innerHTML;
-dayName = dayName.trim();
+dayName = parseInt(dayName);
 document.getElementById('day_select').value = dayName;
 
 // select for the timeslot

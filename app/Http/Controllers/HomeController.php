@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
     /**
@@ -29,7 +30,11 @@ class HomeController extends Controller
 
   public function Dashboard()
     {
-        return view('dashboard');
+      $timeTable = DB::table('slot')
+      ->join('semester', 'semester.semesterId', '=', 'slot.semesterId')
+      ->select('semester.semesterName', 'semester.semesterId')->distinct()->get();
+        return view('dashboard', ['timetable' => $timeTable]);
+
     }
 
 
@@ -275,13 +280,19 @@ class HomeController extends Controller
               ->join('instructor', 'slot.instructorId', '=', 'instructor.instrutorId')
               ->join('rooms', 'slot.roomId', '=', 'rooms.roomid')
               ->join('course', 'slot.courseId', '=', 'course.courseId')
+              ->join('day', 'slot.Day', '=', 'day.dayId')
+              ->join('time', 'slot.timeSlot', '=', 'time.timeId')
               ->select('*')
               ->get();
 
   $dept = DB::table('department')->get();
   $teacher = DB::table('instructor')->get();
   $course = DB::table('course')->get();
-    return view('slot', [ 'inst' => $inst, 'dept' => $dept, 'teacher' => $teacher, 'course' => $course]);
+  $time = DB::table('time')->get();
+  $day = DB::table('day')->get();
+
+
+    return view('slot', [ 'inst' => $inst, 'dept' => $dept, 'teacher' => $teacher, 'course' => $course, 'time' => $time, 'day' => $day]);
 
   }
 
@@ -294,18 +305,47 @@ class HomeController extends Controller
 
   public function saveSlot(Request $request){
 
-    DB::table('slot')->insert(
-      [
-        'deptId' => $request->departmentName,
-        'semesterId' => $request->semesterName,
-        'instructorId' => $request->instructorName,
-        'roomId' => $request->roomName,
-        'timeSlot' => $request->timeSlot,
-        'courseId' => $request->courseName,
-        'Day' => $request->day
-    ]
-  );
-  return redirect('slot')->with('message','A New Slot has been created');
+$check = DB::table('slot')->select('*')->where('slot.Day', $request->day)
+->where('slot.timeSlot', $request->timeSlot)->get();
+$oldSlotId = 0;
+
+
+if(count($check) === 0) {
+
+      DB::table('slot')->insert(
+        [
+          'deptId' => $request->departmentName,
+          'semesterId' => $request->semesterName,
+          'instructorId' => $request->instructorName,
+          'roomId' => $request->roomName,
+          'timeSlot' => $request->timeSlot,
+          'courseId' => $request->courseName,
+          'Day' => $request->day
+      ]
+    );
+    return redirect('slot')->with('message','A New Slot has been created');
+}else{
+foreach($check as $ch){
+  $oldSlotId = $ch->slotId;
+}
+
+$oldSlotId;
+  DB::table('slot')->where('slotId', $oldSlotId)->update(
+    [
+      'deptId' => $request->departmentName,
+      'semesterId' => $request->semesterName,
+      'instructorId' => $request->instructorName,
+      'roomId' => $request->roomName,
+      'timeSlot' => $request->timeSlot,
+      'courseId' => $request->courseName,
+      'Day' => $request->day
+  ]
+);
+    return redirect('slot')->with('message','An Existing slot has been updated');
+
+
+} // else satatement ends here
+
 
   }
 
@@ -322,15 +362,18 @@ class HomeController extends Controller
               ->join('instructor', 'slot.instructorId', '=', 'instructor.instrutorId')
               ->join('rooms', 'slot.roomId', '=', 'rooms.roomid')
               ->join('course', 'slot.courseId', '=', 'course.courseId')
+              ->join('day', 'slot.Day', '=', 'day.dayId')
+              ->join('time', 'slot.timeSlot', '=', 'time.timeId')
               ->select('*')->where('slotId', $id)
               ->get();
 
   $dept = DB::table('rooms')->get();
   $teacher = DB::table('instructor')->get();
   $course = DB::table('course')->get();
+  $day = DB::table('day')->get();
+  $time = DB::table('time')->get();
 
-
-    return view('editslot', [ 'inst' => $inst, 'dept' => $dept, 'teacher' => $teacher, 'course' => $course]);
+    return view('editslot', [ 'inst' => $inst, 'dept' => $dept, 'teacher' => $teacher, 'course' => $course, 'day' => $day, 'time' => $time]);
 
 
   }
@@ -359,15 +402,14 @@ public function editSlotPost(Request $request){
     ]
   );
 
-  return redirect('slot')->with('message','A Slot has been removed from the TimeTable');
+  return redirect('slot')->with('message','A Slot has been updated from the TimeTable');
 }
 
 
 
 // managing the time table
 
-public function getTimeTable(){
-  $id = 3;
+public function getTimeTable($id){
 
   $result = DB::table('slot')
             ->join('department', 'slot.deptId', '=', 'department.deptId')
@@ -375,12 +417,19 @@ public function getTimeTable(){
             ->join('instructor', 'slot.instructorId', '=', 'instructor.instrutorId')
             ->join('rooms', 'slot.roomId', '=', 'rooms.roomid')
             ->join('course', 'slot.courseId', '=', 'course.courseId')
+            ->join('day', 'slot.Day', '=', 'day.dayId')
+            ->join('time', 'slot.timeSlot', '=', 'time.timeId')
             ->select('*')->where('slot.semesterId', $id)
             ->get();
 
 
   return view('timetable', ['result' => $result]);
   // return $result;
+}
+
+public function removeTimeTable($id){
+      DB::table('slot')->where('semesterId', $id)->delete();
+        return redirect('home')->with('message','The TimeTable has been removed');
 }
 
 
