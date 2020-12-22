@@ -18,7 +18,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -28,12 +28,29 @@ class HomeController extends Controller
      */
 
 
+  public function LandingPage(){
+    return view('landing');
+  }
+
+
   public function Dashboard()
     {
       $timeTable = DB::table('slot')
       ->join('semester', 'semester.semesterId', '=', 'slot.semesterId')
       ->select('semester.semesterName', 'semester.semesterId')->distinct()->get();
         return view('dashboard', ['timetable' => $timeTable]);
+
+        // $timeTable = DB::table('slot')
+        // ->join('department', 'slot.deptId', '=', 'department.deptId')
+        // ->join('semester', 'slot.semesterId', '=', 'semester.semesterId')
+        // ->join('instructor', 'slot.instructorId', '=', 'instructor.instrutorId')
+        // ->join('rooms', 'slot.roomId', '=', 'rooms.roomid')
+        // ->join('course', 'slot.courseId', '=', 'course.courseId')
+        // ->join('day', 'slot.Day', '=', 'day.dayId')
+        // ->join('time', 'slot.timeSlot', '=', 'time.timeId')
+        // ->select('*')->distinct()->get();
+      
+        // return view('dashboard', ['timetable' => $timeTable]);
 
     }
 
@@ -148,7 +165,7 @@ class HomeController extends Controller
       ]
   );
 
-  return redirect('room')->with('message','A New Room has been added');
+  return redirect('room')->with('message','A New Room has been added to the table');
 
   }
 

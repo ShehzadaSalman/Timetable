@@ -10,132 +10,21 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-
-    <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
-
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-   <link rel="stylesheet" href="assets/css/custom.css">
+<!-- calling the style files here -->
+@component('layouts.components.style')  
+@endcomponent
 
 
 </head>
 <body>
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Edit the Course</h4>
-        </div>
-        <div class="modal-body">
-        <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
-					{{ csrf_field() }}
-				<input type="text" name="courseName" id="editCourseName" placeholder="Write Course Title" class="form-control" required>
-<textarea name="courseDescription" cols="80" class="form-control" id = "editCourseDescription" required></textarea>
-			<button type="submit" class="btn btn-default"  style = "margin-top: 20px;" >Update</button>
-				</form>
 
-
-        </div>
-
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
-
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
-    	<div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="home" class="simple-text">
-                    Automated TimeTable
-                </a>
-            </div>
-
-            <ul class="nav">
-            <li class="">
-                    <a href="home">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="manage">
-                        <i class="pe-7s-user"></i>
-                        <p>Manage admin</p>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="#">
-                        <i class="pe-7s-note2"></i>
-                        <p>Create a Time Table</p>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="instructor">
-                        <i class="pe-7s-users"></i>
-                        <p>Instructor</p>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="department">
-                        <i class="pe-7s-culture"></i>
-                        <p>Department</p>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="semester">
-                        <i class="pe-7s-bookmarks"></i>
-                        <p>Semester</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="course">
-                        <i class="pe-7s-notebook"></i>
-                        <p> Course</p>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="room">
-                        <i class="pe-7s-box2"></i>
-                        <p>Room</p>
-                    </a>
-                </li>
-
-                <li class="">
-									<a class="dropdown-item" href="{{ route('logout') }}"
-										 onclick="event.preventDefault();
-																	 document.getElementById('logout-form').submit();">
-																		 <i class="pe-7s-back"></i>
-											<p>{{ __('Logout') }} </p>
-									</a>
-
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-											@csrf
-									</form>
-                </li>
-
-
-
-            </ul>
-    	</div>
-    </div>
-
+<!-- calling the sideba component here -->
+@component('layouts.components.sidebar')  
+@slot('course')
+active
+@endslot
+@endcomponent
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
@@ -156,7 +45,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                   <div class="col-md-8">
+                   <div class="col-md-12">
                     @if(session()->has('message'))
                 <div class="alert alert-success">
                         {{ session()->get('message') }}
@@ -165,8 +54,10 @@
                     <!-- credentials for the user -->
                     <div class="credential-div">
 
-                        <h4>Create a new Course</h4>
-
+                            <h4>
+                              <strong>Add A New Subject </strong>
+                            </h4>
+                      
 			     <form method="post" action="/course" enctype="multipart/form-data">
 					{{ csrf_field() }}
 		                    <input type="text" name="courseName"  class="form-control"
@@ -181,7 +72,7 @@
           </form>
                     </div>
                     <hr/>
-                    <div class = "instructor-list">
+                    <div class = "instructor-list bg-white">
                     <table class="table">
                         <thead>
                         <tr>
@@ -218,46 +109,51 @@
             </div>
         </div>
 <!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Edit the Course</h4>
+        </div>
+        <div class="modal-body">
+        <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
+					{{ csrf_field() }}
+				<input type="text" name="courseName" id="editCourseName" placeholder="Write Course Title" class="form-control" required>
+          <textarea name="courseDescription" cols="80" class="form-control" id = "editCourseDescription" required></textarea>
+			<button type="submit" class="btn btn-default"  style = "margin-top: 20px;" >Update</button>
+				</form>
 
+        </div>
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
 
-                        </li>
+  @component('layouts.components.footer')  
+@endcomponent
 
-                    </ul>
-                </nav>
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="/">Automated TimeTable</a>, made with love for a better world
-                </p>
-            </div>
-        </footer>
+   
 
     </div>
 </div>
 
 
-</body>
 
-    <!--   Core JS Files   -->
-    <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-  <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+</body>
+<!-- calling the scripts here -->
+<!-- calling the style files here -->
+@component('layouts.components.script')  
+@endcomponent
     <script>
 
      $(document).ready(function () {
-
 $('.edit-btn').click(function () {
 // $("#editSurveyModal").modal()
 var title_name =   $(this).parent().parent().find('.course_title').html();
 var title_description =   $(this).parent().parent().find('.course_description').html();
 var title_id = $(this).parent().parent().find('.course_id').html();
-
-
 $('#editCourseName').val(title_name);
 $('#editCourseDescription').val(title_description);
 $('#edit-form').attr('action' ,'editcourse/' +title_id);

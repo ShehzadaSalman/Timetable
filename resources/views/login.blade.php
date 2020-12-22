@@ -5,22 +5,10 @@
     <meta name="viewport" content="width=
     , initial-scale=1.0">
     <title>Automated TimeTable</title>
-      <!-- Bootstrap core CSS     -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-        <!-- Bootstrap core CSS     -->
-
-    <!-- Animation library for notifications   -->
-    <link href="assets/css/animate.min.css" rel="stylesheet"/>
-
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-      <!--     Fonts and icons     -->
-      <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-      <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-      <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-      <link rel="stylesheet" href="assets/css/custom.css">
-
+    <!-- style goes here  -->
+<!-- calling the style files here -->
+@component('layouts.components.style')  
+@endcomponent
 </head>
 <body>
   <!-- main div starts here-->
@@ -72,7 +60,8 @@
 </div>
 
 </div>
-
+@component('layouts.components.script')  
+@endcomponent
 
 <!-- main div ends here -->
 </body>

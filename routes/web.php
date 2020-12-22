@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Main login page
-// Route::get('/', 'HomeController@loginPage');
-//
-Route::get('/', function(){
-  $info = DB::table('siteinfo')->get();
-  return view('login',['info' => $info ]);
 
-});
+Route::get('/', 'HomeController@LandingPage');
+
+// Route::get('/', function(){
+
+//   return "this is the landing page";
+
+// });
 
 // Thses pages would open after user authentication
 
