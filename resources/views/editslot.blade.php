@@ -80,12 +80,13 @@ active
                     <!-- credentials for the user -->
                     <div class="credential-div">
 
-                        <h4>Edit a TimeTable Slot</h4>
+					<h4 class = ""><strong>Edit The TimeSlot</strong></h4>
 
 									     <form method="post" action="/editslotpost" enctype="multipart/form-data">
 											{{ csrf_field() }}
 
 												@foreach($inst as $instu)
+												<h5>Class: {{$instu->semesterName}}</h5>
 												<h5>Department: {{$instu->deptName}}</h5>
                         @endforeach
 											<br>
@@ -102,21 +103,21 @@ active
 												<option value=""></option>
                       </select>
                     	<br>
-											<span>Select the Instructor</span>
+											<span>Select the Teacher</span>
 											<select class="form-control" name="instructorName" id = "InstructorName" required>
 												@foreach($teacher as $teach)
 												<option value="{{ $teach->instrutorId}}">{{$teach->instructorname }}</option>
                         @endforeach
 											</select>
 											<br>
-											<span>Select the Course</span>
+											<span>Select the Subject</span>
 											<select class="form-control" name="courseName" id = "courseName" required>
 												@foreach($course as $cou)
 												<option value="{{ $cou->courseId}}">{{$cou->courseName }}</option>
 												@endforeach
 											</select>
 											<br>
-											<span>Select the Semester</span>
+											<span>Select the Class</span>
 											<select class="form-control" id = "semesterName" name="semesterName" required>
 												<option value=""></option>
 											</select>
@@ -152,8 +153,8 @@ active
                             <th>id</th>
 														<th>deptId</th>
                             <th>Dept</th>
-														<th>Semester</th>
-														<th>Instruc id</th>
+														<th>Class</th>
+														<th>Teacher id</th>
 														<th>Instructor</th>
 														<th>room id</th>
 														<th>Room</th>
@@ -257,6 +258,7 @@ let newdeptID = parseInt(departmentID);
 			 let roomName = document.getElementById('room_id').innerHTML;
 			 roomName = parseInt(roomName);
 			 $.ajax({url: "/ajaxrequestroom/" +newdeptID , success: function(result){
+				 console.log("ajax request room success")
 				 $("#roomName").empty(); // empty the list
 				for(let i =0; i< result.length; i++){ // append new options to the select element
 					$("#roomName").append("<option value = "+result[i].roomid+">"+result[i].roomname+"</option>");

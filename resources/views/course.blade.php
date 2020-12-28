@@ -17,7 +17,26 @@
 
 </head>
 <body>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Update the Subject</h4>
+        </div>
+        <div class="modal-body">
+        <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
+					{{ csrf_field() }}
+				<input type="text" name="courseName" id="editCourseName" placeholder="Write Course Title" class="form-control" required>
+          <textarea name="courseDescription" cols="80" class="form-control" id = "editCourseDescription" required></textarea>
+			<button type="submit" class="btn btn-default"  style = "margin-top: 20px;" >Update</button>
+				</form>
 
+        </div>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
 <div class="wrapper">
 <!-- calling the sideba component here -->
 @component('layouts.components.sidebar')  
@@ -35,7 +54,7 @@ active
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Managing the Course</a>
+                    <a class="navbar-brand" href="#">Managing the Subject</a>
                 </div>
 
             </div>
@@ -53,11 +72,9 @@ active
                 @endif
                     <!-- credentials for the user -->
                     <div class="credential-div">
-
                             <h4>
                               <strong>Add A New Subject </strong>
                             </h4>
-                      
 			     <form method="post" action="/course" enctype="multipart/form-data">
 					{{ csrf_field() }}
 		                    <input type="text" name="courseName"  class="form-control"
@@ -107,28 +124,10 @@ active
                     </div>
                 </div>
             </div>
+
+
         </div>
 <!-- Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Edit the Course</h4>
-        </div>
-        <div class="modal-body">
-        <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
-					{{ csrf_field() }}
-				<input type="text" name="courseName" id="editCourseName" placeholder="Write Course Title" class="form-control" required>
-          <textarea name="courseDescription" cols="80" class="form-control" id = "editCourseDescription" required></textarea>
-			<button type="submit" class="btn btn-default"  style = "margin-top: 20px;" >Update</button>
-				</form>
-
-        </div>
-
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>
 
   @component('layouts.components.footer')  
 @endcomponent

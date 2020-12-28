@@ -56,7 +56,7 @@ active
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Managing the Instructor</a>
+                    <a class="navbar-brand" href="#">Managing Teachers</a>
                 </div>
 
             </div>
@@ -75,7 +75,7 @@ active
                     <!-- credentials for the user -->
                     <div class="credential-div">
 
-                        <h4>Create a new Instructor</h4>
+                    <h4 class = ""><strong>Add A New Teacher</strong></h4>
 
 	     <form method="post" action="/instructor" enctype="multipart/form-data">
 			{{ csrf_field() }}

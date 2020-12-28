@@ -22,7 +22,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Edit the Room</h4>
+          <h4 class="modal-title">Update the Room</h4>
         </div>
         <div class="modal-body">
         <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
@@ -61,7 +61,7 @@ active
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <!-- <a class="navbar-brand" href="#">Managing Rooms</a> -->
+                    <a class="navbar-brand" href="#">Managing ClassRooms</a>
                 </div>
 
             </div>
@@ -116,7 +116,7 @@ active
                         <tbody>
                         @foreach($inst as $var)
                         <tr>
-                            <td class = "room_id"> {{ $var->ID}} </td>
+                            <td class = "room_id"> {{ $loop->index + 1 }} </td>
                             <td class = "department_id" style ="display: none;"> {{ $var->DEPTID }}</td>
                             <td class = "department_name">{{ $var->DEPARTMENT}}</td>
                             <td class = "room_name"> {{ $var->NAME}}</td>

@@ -5,7 +5,7 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Automated TimeTable</title>
+	<title> TimeTable Maker</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -22,7 +22,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Edit the Room</h4>
+          <h4 class="modal-title">Update the Class</h4>
         </div>
         <div class="modal-body">
         <form id ="edit-form" method="post" action="" enctype="multipart/form-data">
@@ -61,7 +61,7 @@ active
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Managing the Rooms</a>
+                    <a class="navbar-brand" href="#">Managing the Class</a>
                 </div>
 
             </div>
@@ -88,10 +88,10 @@ active
                         <option value="{{$dep->deptId}}">{{ $dep->deptName }}</option>
                         @endforeach
                         </select>
-                        <span style = "color: #8e8e8e; padding-left: 20px;">Select the department for this ClassRoom</span>
+                        <span style = "color: #8e8e8e; padding-left: 20px;">Select the department for this Class</span>
                         <input style = " margin-top: 20px;"
                             type="text" name="roomName"  class="form-control"
-                        placeholder = "title of the Semester" required>
+                        placeholder = "Write Class Name here" required>
 
 
                         <div class="text-right">
@@ -108,8 +108,8 @@ active
                         <thead>
                         <tr>
                             <th>id</th>
+                            <th>Class Name</th>
                             <th>Department Name</th>
-                            <th>Title</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -118,8 +118,9 @@ active
                         <tr>
                             <td class = "room_id"> {{ $var->ID}} </td>
                             <td class = "department_id" style ="display: none;"> {{ $var->DEPTID }}</td>
-                            <td class = "department_name">{{ $var->DEPARTMENT}}</td>
                             <td class = "room_name"> {{ $var->NAME}}</td>
+                            <td class = "department_name">{{ $var->DEPARTMENT}}</td>
+                          
                             <td>
                             <a class = "edit-btn">Edit</a> |
                             <a href="deletesemester/{{$var->ID}}">Delete</a>

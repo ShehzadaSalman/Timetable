@@ -78,6 +78,7 @@ ul.nav.nav-mobile-menu{
    padding-left: 0;
     border: none;
     color: #FF9500;
+    cursor: pointer;
 }
 .delete-btn{
     padding-left: 0;
@@ -128,12 +129,50 @@ a:hover{
 .bg-white{
     background-color: #fff;
 }
+
+
+
+/* padding and margin classes */
+
+.mb-1{
+margin-bottom: 10px;
+}
+.mb-2{
+    margin-bottom: 20px;   
+}
+.mb-3{
+    margin-bottom: 40px;
+}
+.mb-4{
+    margin-bottom: 80px;
+}
+.mb-5{
+    margin-bottom: 100px;
+}
+
+
 .form-control{
-    border: none;
+   
+    -webkit-box-shadow:3px 3px 5px -3px #ccc;
+    -moz-box-shadow: 3px 3px 5px -3px #ccc;
+    box-shadow: 3px 3px 5px -3px #ccc;
 }
 .instructor-list{
     background-color: #fff;
+    overflow-x: auto;
 }
+.sidebar[data-color="red"]:after{
+ background: linear-gradient(to bottom, #FB404B 0%, #FB404B 100%);
+}
+.background-white{ background-color: #fff;}
+.modal-header{background-color: #FF4A55;}
+.modal-title{color: #fff; font-weight: bold;}
+.btn-default{
+    border-color: #212121;
+    color: #fff;
+    background-color: #212121;
+}
+.modal-header .close{color: #fff;}
 .btn-secondary{
     border-color:  #212121;
     color: #fff;
@@ -141,3 +180,4 @@ a:hover{
     border-radius: 5px;
     border-radius: 4px;
 }
+.modal-body .btn-secondary{margin-top: 30px;}

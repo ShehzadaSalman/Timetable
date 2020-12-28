@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="red" data-image="assets/img/sidebar-5.jpg">
+<div class="sidebar" data-color="red" data-image="https://images.pexels.com/photos/4145347/pexels-photo-4145347.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
 
   
 

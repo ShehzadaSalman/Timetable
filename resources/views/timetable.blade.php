@@ -40,7 +40,7 @@ active
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="#">Dashboard /*View This Page In Desktop */</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -49,13 +49,10 @@ active
         </nav>
 
 
-
-
-
-        <div class="content div-box-dashboard">
+<div class="content div-box-dashboard">
 <!-- displaying the  time table here -->
 <div style = "width: 70px;">
-<table class = "table table-bordered table-responsive">
+<table class = "table table-bordered table-responsive background-white">
 	<thead>
 		<tr>
 			<th>Time</th>
@@ -65,7 +62,7 @@ active
 
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					08:00AM
 				</div>
 
@@ -73,7 +70,7 @@ active
 		</tr>
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					09:00AM
 				</div>
 
@@ -81,7 +78,7 @@ active
 		</tr>
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					10:00AM
 				</div>
 
@@ -90,7 +87,7 @@ active
 		<tr>
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					11:00AM
 				</div>
 
@@ -98,7 +95,7 @@ active
 		</tr>
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					12:00PM
 				</div>
 
@@ -106,7 +103,7 @@ active
 		</tr>
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					01:00PM
 				</div>
 
@@ -114,14 +111,14 @@ active
 		</tr>
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					02:00PM
 				</div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					03:00PM
 				</div>
 
@@ -129,7 +126,7 @@ active
 		</tr>
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					04:00PM
 				</div>
 
@@ -137,7 +134,7 @@ active
 		</tr>
 		<tr>
 			<td>
-				<div style = "height: 130px;">
+				<div style = "height: 100px;">
 					05:00PM
 				</div>
 
@@ -149,7 +146,7 @@ active
 </table>
 </div>
 <div class="second-table">
-	<table class = "table table-responsive table-bordered">
+	<table class = "table table-responsive table-bordered background-white">
 		<thead>
 		<tr>
 
@@ -167,15 +164,14 @@ active
         <tr>
 			@for($a = 1; $a < 8; $a++)  <!-- checking day or whatever -->
           <td class = "">
-						<div style="height: 130px; width: 100%;" class="text-center">
+						<div style="height: 100px; width: 100%;" class="text-center">
 							@foreach($result as $res)
 							@if($res->timeSlot == $i && $res->Day == $a)
-						      Department:	{{ $res->deptName  }}
+						      <strong>Department:</strong> 	{{ $res->deptName  }}
 							<ul style="margin:0; padding:0; list-style: none;" >
-								<li>Instructor: {{ $res->instructorname}} </li>
-								<li>Room: {{$res->roomname}}</li>
-								<li>Course: {{$res->courseName}}</li>
-
+								<li><strong>Teacher:</strong>  {{ $res->instructorname}} </li>
+								<li> <strong>Room:</strong> {{$res->roomname}}</li>
+								<li> <strong>Subject:</strong>  {{$res->courseName}}</li>
 							</ul>
 							@else
 

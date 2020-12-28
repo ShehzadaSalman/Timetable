@@ -5,7 +5,7 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Automated TimeTable</title>
+	<title>TimeTable Maker</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -81,52 +81,80 @@ active
 
 									     <form method="post" action="/slot" enctype="multipart/form-data">
 											{{ csrf_field() }}
-											<span syle = "">Select a Department</span>
-											<select class="form-control" id = "departmentName" name="departmentName" required>
+										
+									 
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                      <span syle = "">Select a Department</span>
+                      <select class="form-control" id = "departmentName" name="departmentName" required>
 												<option value="">Choose a department</option>
 												@foreach($dept as $dep)
 												<option value="{{ $dep->deptId }}">{{$dep->deptName}}</option>
                         @endforeach
 											</select>
-											<br>
-											<span>Select the Room</span>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                      	<span>Select the Room</span>
 											<select class="form-control" id = "roomName" name="roomName" required>
+                    	</select>
+                      </div>
 
-											</select>
-                    	<br>
-											<span>Select the Instructor</span>
+                      <div class="col-md-6 mb-3">
+                      <span>Select the Teacher</span>
 											<select class="form-control" name="instructorName" id = "InstructorName" required>
 												@foreach($teacher as $teach)
 												<option value="{{ $teach->instrutorId}}">{{$teach->instructorname }}</option>
                         @endforeach
 											</select>
-											<br>
-											<span>Select the Course</span>
+                      </div>
+                    
+                      <div class="col-md-6 mb-3">
+                      <span>Select the Subject</span>
 											<select class="form-control" name="courseName" id = "courseName" required>
 												@foreach($course as $cou)
 												<option value="{{ $cou->courseId}}">{{$cou->courseName }}</option>
 												@endforeach
 											</select>
-											<br>
-											<span>Select the Semester</span>
+                      </div>
+
+
+                      <div class="col-md-6 mb-3">
+                      <span>Select the Class</span>
 											<select class="form-control" id = "semesterName" name="semesterName" required>
 												<option value=""></option>
 											</select>
-											<br>
-											<span>Select the Day of the week</span>
+                      </div>
+
+
+                      <div class="col-md-6 mb-3">
+                      <span>Select the Day of the week</span>
 											<select class="form-control" name="day" required>
 												@foreach($day as $da)
 												<option value="{{$da->dayId}}">{{ $da->dayName }}</option>
 												@endforeach
 											</select>
-												<br>
+                      </div>
 
-											<span>Select the TimeSlot</span>
+                      <div class="col-md-12 mb-3">
+                      <span>Select the TimeSlot</span>
 										<select class="form-control" name="timeSlot" required>
 											@foreach($time as $ti)
 									   	<option value="{{$ti->timeId}}">{{ $ti->timeName}}</option>
 							        @endforeach
 											</select>
+                      </div>
+
+
+                    
+                    </div>
+                  
+              
+									
+                 
+								
+							
+
+							
 
                         <div class="text-right">
                         <button type="submit" class="btn btn-primary" style = "margin-top: 30px;">
@@ -155,7 +183,7 @@ active
                         <tbody>
                         @foreach($inst as $var)
                         <tr>
-                            <td class = "slot_id"> {{ $var->slotId}}</td>
+                            <td class = "slot_id">{{ $loop->index + 1 }}</td>
                             <td class = "department_name"> {{ $var->deptName }}</td>
 														<td class = "slot_id"> {{ $var->semesterName}}</td>
 														<td class = "department_name"> {{ $var->instructorname }}</td>
@@ -204,14 +232,14 @@ active
 			 $("#departmentName").change(function(){
 				 var id = $(this).children("option:selected"). val(); // get value of the selected option
            // for the rooms options
-				 $.ajax({url: "ajaxrequestroom/" +id , success: function(result){
+				 $.ajax({url: "/ajaxrequestroom/" +id , success: function(result){
 					 $("#roomName").empty(); // empty the list
           for(let i =0; i< result.length; i++){ // append new options to the select element
             $("#roomName").append("<option value = "+result[i].roomid+">"+result[i].roomname+"</option>");
 					}
 			   }});
           // for the semesters of the department
-					$.ajax({url: "ajaxrequestsemester/" +id , success: function(result){
+					$.ajax({url: "/ajaxrequestsemester/" +id , success: function(result){
 					$("#semesterName").empty(); // empty the list
 	 				for(let i =0; i< result.length; i++){ // append new options to the select element
 	 					$("#semesterName").append("<option value = "+result[i].semesterId+">"+result[i].semesterName+"</option>");
