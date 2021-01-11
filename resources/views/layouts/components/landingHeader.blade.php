@@ -57,7 +57,7 @@
                         <!--begin navbar-nav -->
                         <ul class="navbar-nav ml-auto">
 
-                            <li><a href="#home">Home</a></li>
+                            <!-- <li><a href="#home">Home</a></li> -->
 
                             <li><a href="#about">About</a></li>
 
@@ -73,9 +73,11 @@
 
                             <li><a href="#blog">Blog</a></li>
 
-                            <li class="discover-link"><a href="#contact" class="discover-btn">Contact Us</a></li>
+                            <li><a href="">Contact</a></li>
 
                         </ul>
+                   
+                   
                         <!--end navbar-nav -->
 
                     </div>
@@ -83,10 +85,21 @@
 
             </div>
     		<!--end container -->
-            
+            <ul>
+    <li>
+    <a href={{ url('login') }} class="discover-btn">Login / SignUp</a>
+    </li>
+    </ul>
+        
         </nav>
     	<!--end navbar-fixed-top -->
         
+    <nav>
+    
+    
+    </nav>
+
+
     </header>
     <!--end header -->
 

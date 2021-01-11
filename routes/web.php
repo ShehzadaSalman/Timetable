@@ -23,8 +23,11 @@ Route::get('/', 'HomeController@LandingPage');
 
 // Thses pages would open after user authentication
 
+
+Route::get('/registration', 'HomeController@registration');
+
 // Dashboard Page
-Route::get('/home', 'HomeController@Dashboard');
+Route::get('/home', 'HomeController@Dashboard')->middleware('auth');
 
 // Manage Admins
 Route::get('/manage', 'HomeController@ManageAdmin');
@@ -82,4 +85,11 @@ Route::get('/ajaxrequestsemester/{id}','HomeController@semesterDepartmentAjax');
 // displaying the time table of a semesters
 Route::get('/timetable/{id}', 'HomeController@getTimeTable');
 Route::get('/timetableremove/{id}', 'HomeController@removeTimeTable');
+
+// routes for user authentication
+
+Route::post('/createUser', 'HomeController@createUser');
+Route::post('/loginUser', 'HomeController@loginUser');
+
+
 Auth::routes();

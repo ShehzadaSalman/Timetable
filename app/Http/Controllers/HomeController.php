@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
@@ -27,18 +28,29 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-
+   
   public function LandingPage(){
     return view('landing');
   }
 
 
+public function registration(){
+  return view('login');
+}
+
+
+
   public function Dashboard()
     {
+
+      $id = Auth::id();
       $timeTable = DB::table('slot')
       ->join('semester', 'semester.semesterId', '=', 'slot.semesterId')
-      ->select('semester.semesterName', 'semester.semesterId')->distinct()->get();
+      ->select('semester.semesterName', 'semester.semesterId')->where('slot.userid', $id)->distinct()->get();
         return view('dashboard', ['timetable' => $timeTable]);
+
+
+
 
         // $timeTable = DB::table('slot')
         // ->join('department', 'slot.deptId', '=', 'department.deptId')
@@ -67,22 +79,25 @@ class HomeController extends Controller
 // ===========================================================================================
 
   public function getInstructor(){
-    $inst = DB::table('instructor')->get();
+    $id = Auth::id();
+    $inst = DB::table('instructor')->where('userid', $id)->get();
     return view('instructor', [ 'inst' => $inst]);
   }
 
   public function saveInstructor(Request $request){
+    $id = Auth::id();
     DB::table('instructor')->insert(
-      ['instructorname' => $request->instructorName]
+      ['instructorname' => $request->instructorName,
+        'userid' => $id 
+      ]
   );
 
-  return redirect('instructor')->with('message','An Instructor has been added to the TimeTable');
+  return redirect('instructor')->with('message','An New Teacher has been added to the table below');
 
   }
 
   public function deleteInstructor($id){
     DB::table('instructor')->where('instrutorId', $id)->delete();
-
     return redirect('instructor')->with('message','An Instructor has been removed from the TimeTable');
   }
 
@@ -102,15 +117,18 @@ class HomeController extends Controller
    // managing the department
 // =============================================================================================
    public function getDepartment(){
-    $inst = DB::table('department')->get();
+    $id = Auth::id();
+    $inst = DB::table('department')->where('userid', $id)->get();
     return view('department', [ 'inst' => $inst]);
   }
 
   public function saveDepartment(Request $request){
+      $id = Auth::id();
     DB::table('department')->insert(
       [
         'deptName' => $request->departmentName,
-        'no_of_rooms' => $request->departmentRoom
+        'no_of_rooms' => $request->departmentRoom,
+        'userid' => $id
 
       ]
   );
@@ -133,8 +151,6 @@ class HomeController extends Controller
         'no_of_rooms' => $request->departmentRoom
       ]
     );
-
-
     return redirect('department')->with('message','A department has been updated');
   }
 
@@ -143,24 +159,24 @@ class HomeController extends Controller
   // ============================================================================ //
 
    public function getRoom(){
-
+    $id = Auth::id();
     $inst = DB::table('rooms')
     ->join('department', 'rooms.deptid', '=', 'department.deptId')
     ->select('rooms.roomid as ID', 'rooms.roomname as NAME','department.deptId as DEPTID', 'department.deptName as DEPARTMENT')
+    ->where('rooms.userid', $id)
     ->get();
-
-
-    $dept = DB::table('department')->get();
+    $dept = DB::table('department')->where('department.userid', $id)->get();
     return view('room', [ 'inst' => $inst , 'dept' => $dept]);
 
   }
 
   public function saveRoom(Request $request){
-
+    $id = Auth::id();
     DB::table('rooms')->insert(
       [
         'roomname' => $request->roomName,
-        'deptid' => $request->departmentID
+        'deptid' => $request->departmentID,
+        'userid' => $id
 
       ]
   );
@@ -203,25 +219,26 @@ class HomeController extends Controller
    // Managing the semester
 // =============================================================================
    public function getSemester(){
-
+    $id = Auth::id();
     $inst = DB::table('semester')
     ->join('department', 'semester.deptId', '=', 'department.deptId')
     ->select('semester.semesterId as ID', 'semester.semesterName as NAME','department.deptId as DEPTID', 'department.deptName as DEPARTMENT')
+    ->where('semester.userid', $id)
     ->get();
 
 
-    $dept = DB::table('department')->get();
+    $dept = DB::table('department')->where('userid', $id)->get();
     return view('semester', [ 'inst' => $inst , 'dept' => $dept]);
 
   }
 
   public function saveSemester(Request $request){
-
+    $id = Auth::id();
     DB::table('semester')->insert(
       [
         'semesterName' => $request->roomName,
-        'deptId' => $request->departmentID
-
+        'deptId' => $request->departmentID,
+        'userid' => $id
       ]
   );
 
@@ -254,15 +271,18 @@ class HomeController extends Controller
 
 
   public function getCourse(){
-    $inst = DB::table('course')->get();
+    $id = Auth::id();
+    $inst = DB::table('course')->where('userid', $id)->get();
     return view('course', [ 'inst' => $inst]);
   }
 
   public function saveCourse(Request $request){
+    $id = Auth::id();
     DB::table('course')->insert(
       [
         'courseName' => $request->courseName,
-        'courseDescription' => $request->courseDescription
+        'courseDescription' => $request->courseDescription,
+        'userid' => $id
     ]
   );
 
@@ -291,6 +311,7 @@ class HomeController extends Controller
 // ======================================================================================
 
   public function getSlot(){
+    $id = Auth::id();
     $inst = DB::table('slot')
               ->join('department', 'slot.deptId', '=', 'department.deptId')
               ->join('semester', 'slot.semesterId', '=', 'semester.semesterId')
@@ -300,11 +321,12 @@ class HomeController extends Controller
               ->join('day', 'slot.Day', '=', 'day.dayId')
               ->join('time', 'slot.timeSlot', '=', 'time.timeId')
               ->select('*')
+              ->where('slot.userid', $id)
               ->get();
 
-  $dept = DB::table('department')->get();
-  $teacher = DB::table('instructor')->get();
-  $course = DB::table('course')->get();
+  $dept = DB::table('department')->where('userid', $id)->get();
+  $teacher = DB::table('instructor')->where('userid', $id)->get();
+  $course = DB::table('course')->where('userid', $id)->get();
   $time = DB::table('time')->get();
   $day = DB::table('day')->get();
 
@@ -321,7 +343,7 @@ class HomeController extends Controller
 
 
   public function saveSlot(Request $request){
-
+    $id = Auth::id();
 $check = DB::table('slot')->select('*')->where('slot.Day', $request->day)
 ->where('slot.timeSlot', $request->timeSlot)->get();
 $oldSlotId = 0;
@@ -337,7 +359,8 @@ if(count($check) === 0) {
           'roomId' => $request->roomName,
           'timeSlot' => $request->timeSlot,
           'courseId' => $request->courseName,
-          'Day' => $request->day
+          'Day' => $request->day,
+          'userid' => $id
       ]
     );
     return redirect('slot')->with('message','A New Slot has been created');
@@ -427,7 +450,7 @@ public function editSlotPost(Request $request){
 // managing the time table
 
 public function getTimeTable($id){
-
+  $id = Auth::id();
   $result = DB::table('slot')
             ->join('department', 'slot.deptId', '=', 'department.deptId')
             ->join('semester', 'slot.semesterId', '=', 'semester.semesterId')
@@ -447,6 +470,28 @@ public function getTimeTable($id){
 public function removeTimeTable($id){
       DB::table('slot')->where('semesterId', $id)->delete();
         return redirect('home')->with('message','The TimeTable has been removed');
+}
+
+
+
+// multiple user for  timetable maker
+
+// 
+
+public function createUser(Request $request){
+
+  DB::table('users')->insert(
+    [
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => $request->password,
+  ]
+);
+return redirect('home')->with('message','Welcome to TimeTable Maker');
+}
+
+public function loginUser(Request $req){
+  return $req["email"];
 }
 
 

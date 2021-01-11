@@ -13,9 +13,9 @@
                 <!--begin col-md-6-->
                 <div class="col-md-6 margin-top-20">
 
-                    <h1>Discover The Wold's Most Advanced Online Tool</h1>
+                    <h1>Easy Class Scheduling for You School! </h1>
 
-                    <p class="hero-text">Excepteur sint occaecat cupidatat nonet proident, vante nisle culpamitus qui officia deserunt etimus quis autem netsum loremisat entimus velis netsad.</p>
+                    <p class="hero-text">Finding the best class timetable maker for your education institute? Your search is over. The TimeTableMaker aim to make class scheduling easier and fast. Get your free TimeTable maker and discover the benefits yourself!</p>
 
                     <!--begin popup-video-wrapper-->
                     <div class="popup-gallery-wrapper">
@@ -140,7 +140,7 @@
 
                     <h2 class="section-title">What We Do</h2>
 
-                    <p class="section-subtitle">Dicover how our amazing team can help your business.</p>
+                    <p class="section-subtitle">Bringing a free class schedule maker for all schools</p>
                     
                 </div>
                 <!--end col-md-12 -->
@@ -166,10 +166,8 @@
                         <div class="main-services blue">
 
                             <img src="http://placehold.it/400x400" class="width-100">
-
-                            <h4>Brand Awareness</h4>
-
-                            <p>Curabitur quam etsum lacus net netsum nulat iaculis etsimun vitae etsum nisle varius netsum.</p>
+                            <h4>Create Class Schedule</h4>
+                            <p>Beautifully craft interface where you can edit and customize your scheduling periods/timetable structure in one place.</p>
                             
                         </div>
 
@@ -182,10 +180,8 @@
                         <div class="main-services red">
 
                             <img src="http://placehold.it/400x400" class="width-100">
-
-                            <h4>Google Analitycs</h4>
-
-                            <p>Curabitur quam etsum lacus net netsum nulat iaculis etsimun vitae etsum nisle varius netsum.</p>
+                            <h4>Edit Schedule Anytime</h4>
+                            <p>Don’t worry about editing the schedule, change day or time of the class whenever you want</p>
                             
                         </div>
 
@@ -199,9 +195,9 @@
 
                             <img src="http://placehold.it/400x400" class="width-100">
 
-                            <h4>Graphic Design</h4>
+                            <h4>Share Schedule Online</h4>
 
-                            <p>Curabitur quam etsum lacus net netsum nulat iaculis etsimun vitae etsum nisle varius netsum.</p>
+                            <p>Give teachers and students access to the timetable with a shareable link</p>
                             
                         </div>
 
@@ -240,14 +236,16 @@
                 <!--begin col-md-6-->
                 <div class="col-md-6">
 
-                    <h3>Discover how we can help you to grow your business fast.</h3>
+                    <h3>Get your schedules done easily</h3>
 
-                    <p>Velis demo enim ipsam voluptatem quia voluptas sit aspernatur netsum lorem fugit, seditum netis velas matrix net nesciunt.</p>
-                    
+                    <!-- <p>Velis demo enim ipsam voluptatem quia voluptas sit aspernatur netsum lorem fugit, seditum netis velas matrix net nesciunt.</p>
+                     -->
                     <ul class="benefits">
-                        <li><i class="fas fa-check"></i> <b>Quias netus magni</b> netsum eos qui ratione sequi.</li>
-                        <li><i class="fas fa-check"></i> Venis ratione sequi netus <b>enim quia tempor</b> magni.</li>
-                        <li><i class="fas fa-check"></i> Enim <b>ipsam netus</b> voluptatem quia voluptas.</li>
+                        <li><i class="fas fa-check"></i>Schedule classes at flexible times</li>
+                        <li><i class="fas fa-check"></i>Share schedules online with a shareable link</li>
+                        <li><i class="fas fa-check"></i>Divide classes into groups to handle electives</li>
+                        <li><i class="fas fa-check"></i>Make it easier for teachers to manage their schedule</li>
+                        <li><i class="fas fa-check"></i>Have easy access to every teacher’s schedule </li>
                     </ul>
 
                     <a href="#" class="btn-red small scrool">Discover More</a>

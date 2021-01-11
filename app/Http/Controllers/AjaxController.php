@@ -117,23 +117,16 @@ public function logoUpload(Request $request){
   $imageName = 'thelogo.'.$request->logo->getClientOriginalExtension();
   $request->logo->move(public_path('/uploadedimages'), $imageName);
   $path = 'uploadedimages/'.$imageName;
-
   DB::table('siteinfo')->where('id' ,1)->update([
     'Path' => $path,
     'Heading' => $request->siteheading
   ]);
-
-    return redirect('manage')->with('messagetwo',' The  Site Info has been Updated');
+  return redirect('manage')->with('messagetwo',' The  Site Info has been Updated');
 
 }
-
-
 // To use in future projects
-
 public function fileUpload(){
   $imageName = time().'.'.$request->logo->getClientOriginalExtension();
   $request->logo->move(public_path('/uploadedimages'), $imageName);
 }
-
-
 }
