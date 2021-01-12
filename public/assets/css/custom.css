@@ -181,3 +181,9 @@ margin-bottom: 10px;
     border-radius: 4px;
 }
 .modal-body .btn-secondary{margin-top: 30px;}
+#timing-table table tbody td div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

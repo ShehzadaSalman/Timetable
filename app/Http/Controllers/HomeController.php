@@ -61,10 +61,34 @@ public function registration(){
         // ->join('day', 'slot.Day', '=', 'day.dayId')
         // ->join('time', 'slot.timeSlot', '=', 'time.timeId')
         // ->select('*')->distinct()->get();
-      
         // return view('dashboard', ['timetable' => $timeTable]);
 
     }
+
+
+    public function getTimeTable($id){
+      $id = Auth::id();
+      $result = DB::table('slot')
+                ->join('department', 'slot.deptId', '=', 'department.deptId')
+                ->join('semester', 'slot.semesterId', '=', 'semester.semesterId')
+                ->join('instructor', 'slot.instructorId', '=', 'instructor.instrutorId')
+                ->join('rooms', 'slot.roomId', '=', 'rooms.roomid')
+                ->join('course', 'slot.courseId', '=', 'course.courseId')
+                ->join('day', 'slot.Day', '=', 'day.dayId')
+                ->join('time', 'slot.timeSlot', '=', 'time.timeId')
+                ->select('*')->where('slot.userid', $id)
+                ->get();
+    
+    
+      return view('timetable', ['result' => $result]);
+      // return $result;
+    }
+    
+    public function removeTimeTable($id){
+          DB::table('slot')->where('semesterId', $id)->delete();
+            return redirect('home')->with('message','The TimeTable has been removed');
+    }
+    
 
 
    public function ManageAdmin(){
@@ -89,12 +113,10 @@ public function registration(){
     DB::table('instructor')->insert(
       ['instructorname' => $request->instructorName,
         'userid' => $id 
-      ]
-  );
+      ]);
 
   return redirect('instructor')->with('message','An New Teacher has been added to the table below');
-
-  }
+}
 
   public function deleteInstructor($id){
     DB::table('instructor')->where('instrutorId', $id)->delete();
@@ -180,8 +202,7 @@ public function registration(){
 
       ]
   );
-
-  return redirect('room')->with('message','A New Room has been added to the table');
+ return redirect('room')->with('message','A New Room has been added to the table');
 
   }
 
@@ -204,19 +225,7 @@ public function registration(){
     return redirect('room')->with('message','A Room has been updated');
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-   // Managing the semester
+ // Managing the semester
 // =============================================================================
    public function getSemester(){
     $id = Auth::id();
@@ -310,6 +319,8 @@ public function registration(){
 // Manging the slots
 // ======================================================================================
 
+
+// get slot for the current user from the db
   public function getSlot(){
     $id = Auth::id();
     $inst = DB::table('slot')
@@ -341,7 +352,7 @@ public function registration(){
 
 
 
-
+// save a slot
   public function saveSlot(Request $request){
     $id = Auth::id();
 $check = DB::table('slot')->select('*')->where('slot.Day', $request->day)
@@ -449,28 +460,6 @@ public function editSlotPost(Request $request){
 
 // managing the time table
 
-public function getTimeTable($id){
-  $id = Auth::id();
-  $result = DB::table('slot')
-            ->join('department', 'slot.deptId', '=', 'department.deptId')
-            ->join('semester', 'slot.semesterId', '=', 'semester.semesterId')
-            ->join('instructor', 'slot.instructorId', '=', 'instructor.instrutorId')
-            ->join('rooms', 'slot.roomId', '=', 'rooms.roomid')
-            ->join('course', 'slot.courseId', '=', 'course.courseId')
-            ->join('day', 'slot.Day', '=', 'day.dayId')
-            ->join('time', 'slot.timeSlot', '=', 'time.timeId')
-            ->select('*')->where('slot.semesterId', $id)
-            ->get();
-
-
-  return view('timetable', ['result' => $result]);
-  // return $result;
-}
-
-public function removeTimeTable($id){
-      DB::table('slot')->where('semesterId', $id)->delete();
-        return redirect('home')->with('message','The TimeTable has been removed');
-}
 
 
 

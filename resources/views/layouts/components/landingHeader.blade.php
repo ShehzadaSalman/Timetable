@@ -82,7 +82,6 @@
 
                     </div>
                     <!--end navbar-collapse -->
-
             </div>
     		<!--end container -->
             <ul>
