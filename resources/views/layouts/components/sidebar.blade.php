@@ -4,7 +4,7 @@
 
 <div class="sidebar-wrapper">
     <div class="logo">
-        <a href="/home" class="simple-text" style = "display: flex; ">
+        <a href="/" class="simple-text" style = "display: flex; ">
         <i class="pe-7s-display1" style = "font-size: 32px; margin-right: 10px;"></i>
           <strong>TimeTable Maker</strong>
         </a>

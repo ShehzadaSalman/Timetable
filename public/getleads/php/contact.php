@@ -10,7 +10,7 @@ $field_ticket = $_POST['ticket'];
 
 $field_message = $_POST['message'];
 
-$mail_to = 'to@email.com';
+$mail_to = 'shehzada.salman072@gmail.com';
 
 $subject = 'Message from a site visitor '.$field_first_name;
 

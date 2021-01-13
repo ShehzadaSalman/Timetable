@@ -21,16 +21,16 @@
                     <div class="popup-gallery-wrapper">
                         
                         <!--begin popup-video-->
-                        <div class="popup-gallery hero-gallery">
+                        <!-- <div class="popup-gallery hero-gallery">
                             
                             <a class="popup4 video-icon" href="https://www.youtube.com/watch?v=FPfQMVf4vwQ">
                                 <i class="fas fa-play"></i>
                             </a>
 
-                        </div>
+                        </div> -->
                         <!--end popup-video-->
 
-                        <p class="popup-video-text">Watch Presentation Video</p>
+                        <!-- <p class="popup-video-text">Watch Presentation Video</p> -->
 
                     </div>
                     <!--end popup-video-wrapper-->
@@ -56,13 +56,17 @@
                             <!--end success message -->
                             
                             <!--begin register form -->
-                            <form id="register-form-home" class="register-form-home register" action="/getleads/php/register-home.php" method="post">
+                            <form class="register-form-home register"  method="post"  action="{{ route('register') }}">
                                 
                     
-                                <input class="register-input-home name-input-home grey-input" required="" name="register_names_home" placeholder="Company Name*" type="text">
+                                <input class="register-input-home  grey-input" required="" name="name" placeholder="Full Name*" type="text">
                             
-                                <input class="register-input-home name-email-home grey-input" required="" name="register_email_home" placeholder="Email Adress*" type="email">
+                                <input class="register-input-home grey-input" required="" name="email" placeholder="Email Adress*" type="email">
 
+                               <input class="register-input-home  grey-input"  placeholder="Password*"   type="password" name="password" id="passwod">
+
+
+<!-- 
                                 <select class="register-input-home grey-input" required="" name="register_ticket_home">
 
                                     <option value="">We need GetLeads for...</option>
@@ -71,7 +75,7 @@
 
                                     <option value="Professional">Our Sales Department</option>
 
-                                </select>
+                                </select> -->
                                
                                 <input value="Start My Free 14-Day Trial" class="register-submit-home" type="submit">
                                     
@@ -99,15 +103,14 @@
     <!--end home section -->
 
     <!--begin partners-section-->
-    <div class="partners-section">
+    <!-- <div class="partners-section">
         
-        <!--begin container-->
+
         <div class="container">
 
-            <!--begin row-->
             <div class="row">
             
-                <!--begin col-sm-12-->
+        
                 <div class="col-md-10 mx-auto text-center partners">
                     <h5 class="partners-title">As featured in:</h5>
                     <img src="http://placehold.it/250x128" class="partners" alt="image">
@@ -115,12 +118,11 @@
                     <img src="http://placehold.it/250x128" class="partners" alt="image">
                     <img src="http://placehold.it/250x128" class="partners" alt="image">
                 </div>
-                <!--end col-sm-12-->
-                
+           
             </div>
-            <!--end row-->
+      
             
-        </div>
+        </div> -->
         <!--end container-->
     
     </div> 
@@ -228,7 +230,7 @@
                 <!--begin col-md-6-->
                 <div class="col-md-6 padding-bottom-30 wow slideInLeft" data-wow-delay="0.25s" style="visibility: visible; animation-delay: 0.25s; animation-name: slideInLeft;">
 
-                    <img src="http://placehold.it/555x425" class="width-100 bottom-margins-images" alt="pic">
+                    <img src="https://i.ibb.co/9bL4dWC/dashboard-img1.png" class="width-100 bottom-margins-images" alt="pic">
                     
                 </div>
                 <!--end col-sm-6-->
@@ -248,7 +250,7 @@
                         <li><i class="fas fa-check"></i>Have easy access to every teacher’s schedule </li>
                     </ul>
 
-                    <a href="#" class="btn-red small scrool">Discover More</a>
+                    <a href="/login" class="btn-red small scrool">Get Started</a>
 
                 </div>
                 <!--end col-md-6-->
@@ -671,15 +673,15 @@
     <!--end testimonials section -->
 
     <!--begin portfolio section -->
-    <section class="section-white" id="portfolio">
+    <!-- <section class="section-white" id="portfolio">
 
-        <!--begin container -->
+        
         <div class="container">
 
-            <!--begin row -->
+ 
             <div class="row">
 
-                <!--begin col-md-12 -->
+    
                 <div class="col-md-12 text-center margin-bottom-30">
 
                     <h2 class="section-title">Our Portfolio</h2>
@@ -687,100 +689,96 @@
                     <p class="section-subtitle">Discover the latest projects accomplished for our clients.</p>
                     
                 </div>
-                <!--end col-md-12 -->
+              
 
             </div>
-            <!--end row -->
+    
 
         </div>
-        <!--end container -->
 
-        <!--begin container -->
+
+     
         <div class="container padding-bottom-30">
 
-            <!--begin row-->
+        
             <div class="row">
 
-                <!--begin col-md-4 -->
+               
                 <div class="col-md-4 col-sm-12 p-0 m-0">
 
                     <figure class="gallery-insta">
-                        <!--begin popup-gallery-->
+                    
                         <div class="popup-gallery popup-gallery-rounded portfolio-pic">
                             <a class="popup2" href="http://placehold.it/555x460">
                                 <img src="http://placehold.it/555x460" class="width-100" alt="pic">
                                 <span class="eye-wrapper"><i class="fa fa-search-plus eye-icon" style="font-size: 38px;"></i></span>
                             </a>
                         </div>
-                        <!--end popup-gallery-->
+                       
                     </figure>
 
                     <figure class="gallery-insta">
-                        <!--begin popup-gallery-->
+                    
                         <div class="popup-gallery popup-gallery-rounded portfolio-pic">
                             <a class="popup2" href="http://placehold.it/555x460">
                                 <img src="http://placehold.it/555x460" class="width-100" alt="pic">
                                 <span class="eye-wrapper"><i class="fa fa-search-plus eye-icon" style="font-size: 38px;"></i></span>
                             </a>
                         </div>
-                        <!--end popup-gallery-->
+            
                     </figure>
 
                 </div>
-                <!--end col-md-4 -->
-
-                <!--begin col-md-4 -->
+      
                 <div class="col-md-4 col-sm-6 col-xs-12 p-0 m-0">
 
                     <figure class="gallery-insta">
-                        <!--begin popup-gallery-->
+           
                         <div class="popup-gallery popup-gallery-rounded portfolio-pic">
                             <a class="popup2" href="http://placehold.it/623x1050">
                                 <img src="http://placehold.it/623x1050" class="width-100" alt="pic">
                                 <span class="eye-wrapper"><i class="fa fa-search-plus eye-icon" style="font-size: 38px;"></i></span>
                             </a>
                         </div>
-                        <!--end popup-gallery-->
+             
                     </figure>
 
                 </div>
-                <!--end col-md-4 -->
 
-                <!--begin col-md-4 -->
                 <div class="col-md-4 col-sm-6 col-xs-12 p-0 m-0">
 
                     <figure class="gallery-insta">
-                        <!--begin popup-gallery-->
+               
                         <div class="popup-gallery popup-gallery-rounded portfolio-pic">
                             <a class="popup2" href="http://placehold.it/555x460">
                                 <img src="http://placehold.it/555x460" class="width-100" alt="pic">
                                 <span class="eye-wrapper"><i class="fa fa-search-plus eye-icon" style="font-size: 38px;"></i></span>
                             </a>
                         </div>
-                        <!--end popup-gallery-->
+                    
                     </figure>
 
                     <figure class="gallery-insta">
-                        <!--begin popup-gallery-->
+                     
                         <div class="popup-gallery popup-gallery-rounded portfolio-pic">
                             <a class="popup2" href="http://placehold.it/555x460">
                                 <img src="http://placehold.it/555x460" class="width-100" alt="pic">
                                 <span class="eye-wrapper"><i class="fa fa-search-plus eye-icon" style="font-size: 38px;"></i></span>
                             </a>
                         </div>
-                        <!--end popup-gallery-->
+                      
                     </figure>
                     
                 </div>
-                <!--end col-md-4 -->
+           
 
             </div>
-            <!--end row -->
+     
 
         </div>
-        <!--end container -->
+      
 
-    </section>
+    </section> -->
     <!--end portfolio section -->
 
     <!--begin newsletter_wrapper-->
@@ -817,7 +815,7 @@
                             <!--end success_box -->
                             
                             <!--begin newsletter-form -->
-                            <form id="newsletter-form" class="newsletter_form" action="/getleads/php/newsletter.php" method="post">
+                            <form id="newsletter-form" class="newsletter_form" action="https://app.formking.io/submit/f661375bc6e541d397fd8b71c43cf83b" method="post">
                                 <input id="email_newsletter" name="nf_email" placeholder="Enter Your Email Address" type="email">  
                                 <input value="GET STARTED!" id="submit-button-newsletter" type="submit">
                             </form>
@@ -1007,88 +1005,7 @@
     <!--begin pricing section -->
     <section class="section-grey" id="pricing">
 
-        <!--begin container -->
-        <div class="container">
-
-            <!--begin row -->
-            <div class="row align-items-center">
-
-                <!--begin col-md-4 -->
-                <div class="col-md-4 col-sm-12">
-
-                    <h2>Great pricing plans tailored to your business.</h2>
-
-                    <p>Quis autem velis ets reprehender net etid quiste voluptate. Utise wisi enim minim veniam, quis et stationes nets.</p>
-                
-                </div>
-                <!--end col-md-4 -->
-
-                <!--begin col-md-4-->
-                <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-delay="0.25s" style="visibility: visible; animation-delay: 0.25s; animation-name: bounceIn;">
-
-                    <div class="price-box-white">
-
-                        <ul class="pricing-list">
-
-                            <li class="price-title">MONTHLY</li>
-
-                            <li class="price-value">$19</li>
-
-                            <li class="price-subtitle">Per Month</li>
-
-                            <li class="price-tag"><a href="#">GET STARTED</a></li>
-
-                            <li class="price-text">First two weeks free.</li>
-                            
-                            <li class="price-text">Amazing freatures.</li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-                <!--end col-md-4 -->
-
-                <!--begin col-md-4 -->
-                <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-delay="0.75s" style="visibility: visible; animation-delay: 0.75s; animation-name: bounceIn;">
-
-                    <div class="price-box-grey">
-
-                        <ul class="pricing-list">
-
-                            <li class="price-title">ANNUALY</li>
-
-                            <li class="price-value">$29</li>
-
-                            <li class="price-subtitle">Per Year</li>
-
-                            <li class="price-tag"><a href="#">GET STARTED</a></li>
-
-                            <li class="price-text">First two weeks free.</li>
-                            
-                            <li class="price-text">Save 45% with this plan</li>
-
-                            <li class="price-text">Amazing freatures.</li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-                <!--end col-md-4 -->
-
-            </div>
-            <!--end row -->
-
-        </div>
-        <!--end container -->
-
-    </section>
-    <!--end pricing section -->
-
-    <!--begin faq section -->
-    <section class="section-white" id="faq">
-
+ 
         <!--begin container -->
         <div class="container">
 
@@ -1163,38 +1080,38 @@
         <!--end container -->
 
     </section>
+
+
     <!--end faq section -->
 
     <!--begin blog section -->
-    <section class="section-grey section-bottom-border" id="blog">
+    <!-- <section class="section-grey section-bottom-border" id="blog">
         
-        <!--begin container-->
+      
         <div class="container">
 
-            <!--begin row-->
+      
             <div class="row">
             
-                <!--begin col-md-12-->
+               
                 <div class="col-md-12 text-center">
                     <h2 class="section-title">Our Blog</h2>
                     
                     <p class="section-subtitle">Latest news, tips and best practices.</p>
                 </div>
-                <!--end col-md-12-->
+             
             
             </div>
-            <!--end row-->
-            
-            <!--begin row-->
+  
             <div class="row">
 
-                <!--begin col-sm-4 -->
+         
                 <div class="col-md-4">
                     
-                    <!--begin blog-item -->
+
                     <div class="blog-item">
                         
-                        <!--begin popup image -->
+               
                         <div class="popup-wrapper">
                             <div class="popup-gallery">
                                 <a href="#">
@@ -1203,9 +1120,7 @@
                                 </a>
                             </div>
                         </div>
-                        <!--end popup image -->
-                            
-                        <!--begin blog-item_inner -->
+
                         <div class="blog-item-inner">
                         
                             <h3 class="blog-title"><a href="#">The Guide To LinkedIn Ads</a></h3>
@@ -1215,21 +1130,17 @@
                             <p>Quis autem velis reprehender net etid quiste voluptate velite estum quam nihis etsa sedit varias.</p>
                                                   
                         </div>
-                        <!--end blog-item-inner -->
+                     
                         
                     </div>
-                    <!--end blog-item -->
+                 
                         
                 </div>
-                <!--end col-sm-4-->
-                
-                <!--begin col-sm-4 -->
+              
                 <div class="col-md-4">
-                    
-                    <!--begin blog-item -->
+              
                     <div class="blog-item">
-                        
-                        <!--begin popup image -->
+             
                         <div class="popup-wrapper">
                             <div class="popup-gallery">
                                 <a href="#">
@@ -1238,9 +1149,7 @@
                                 </a>
                             </div>
                         </div>
-                        <!--end popup image -->
-                            
-                        <!--begin blog-item_inner -->
+     
                         <div class="blog-item-inner">
                         
                             <h3 class="blog-title"><a href="#">Affinity Designer Quick Start</a></h3>
@@ -1250,21 +1159,18 @@
                             <p>Quis autem velis reprehender net etid quiste voluptate velite estum quam nihis etsa sedit varias.</p>
                              
                         </div>
-                        <!--end blog-item-inner -->
+            
                         
                     </div>
-                    <!--end blog-item -->
+                 
                         
                 </div>
-                <!--end col-sm-4-->
-                
-                <!--begin col-sm-4 -->
+      
                 <div class="col-md-4">
                     
-                    <!--begin blog-item -->
+           
                     <div class="blog-item">
-                        
-                        <!--begin popup image -->
+            
                         <div class="popup-wrapper">
                             <div class="popup-gallery">
                                 <a href="#">
@@ -1273,9 +1179,7 @@
                                 </a>
                             </div>
                         </div>
-                        <!--end popup image -->
-                            
-                        <!--begin blog-item_inner -->
+             
                         <div class="blog-item-inner">
                         
                             <h3 class="blog-title"><a href="#">Our Happy Team</a></h3>
@@ -1285,21 +1189,21 @@
                             <p>Quis autem velis reprehender net etid quiste voluptate velite estum quam nihis etsa sedit varias.</p>
                              
                         </div>
-                        <!--end blog-item-inner -->
+          
                         
                     </div>
-                    <!--end blog-item -->
+       
                         
                 </div>
-                <!--end col-sm-4-->
+           
              
             </div>
-            <!--end row-->
+          
     
         </div>
-        <!--end container-->
+   
     
-    </section>
+    </section> -->
     <!--end blog section -->
    
     <!--begin contact section -->
@@ -1316,7 +1220,7 @@
 
                     <h3 class="section-title white-text">Get In Touch Today</h3>
 
-                    <p class="section-subtitle white">For any other inquiries please <a href="#" class="register-link">get in touch here</a> or call us <b>+44 987 654 321</b></p>
+                    <p class="section-subtitle white">For any other inquiries please <a href="https://institutefinder.pk" class="register-link">get in touch here</a> or call us <b>+92 321 8835 830</b></p>
 
                 </div>
                 <!--end col-md-12 -->
@@ -1341,7 +1245,7 @@
                             <!--end success message -->
                             
                             <!--begin contact form -->
-                            <form id="contact-form" class="row contact-form contact" action="/getleads/php/contact.php" method="post">
+                            <form id="contact-form" class="row contact-form contact" action="https://app.formking.io/submit/308b804163b4435687cd664bd63e033b" method="post">
                                     
                                 <!--begin col-md-6-->
                                 <div class="col-md-6">

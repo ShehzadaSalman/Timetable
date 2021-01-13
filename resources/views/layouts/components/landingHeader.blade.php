@@ -65,16 +65,13 @@
 
                             <li><a href="#testimonials">Testimonials</a></li>
 
-                            <li><a href="#portfolio">Work</a></li>
+                            <li><a href="#portfolio">Gallery</a></li>
 
                             <li><a href="#features">Features</a></li>
-
-                            <li><a href="#pricing">Pricing</a></li>
-
-                            <li><a href="#blog">Blog</a></li>
-
-                            <li><a href="">Contact</a></li>
-
+                            <li><a href="#contact">Contact</a></li>
+                            <li onclick="openAlert()">
+                              <a href={{ url('login') }} class="discover-btn">Login / SignUp</a>
+                             </li>
                         </ul>
                    
                    
@@ -85,9 +82,7 @@
             </div>
     		<!--end container -->
             <ul>
-    <li>
-    <a href={{ url('login') }} class="discover-btn">Login / SignUp</a>
-    </li>
+   
     </ul>
         
         </nav>
